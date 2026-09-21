@@ -1,0 +1,300 @@
+{
+    "name": "Eyivo Sample Theme",
+    "version": "1.0.0",
+    "eyivo_theme_api": "1.0",
+    "settings": {
+        "accent_color": {
+            "type": "color"
+        },
+        "secondary_color": {
+            "type": "color"
+        },
+        "catalog_label": {
+            "type": "text"
+        },
+        "status_label": {
+            "type": "text"
+        },
+        "showcase_heading": {
+            "type": "text"
+        },
+        "showcase_text": {
+            "type": "textarea"
+        },
+        "header_cta_label": {
+            "type": "text"
+        },
+        "header_cta_url": {
+            "type": "url"
+        },
+        "announcement_text": {
+            "type": "text"
+        },
+        "announcement_link_label": {
+            "type": "text"
+        },
+        "announcement_link_url": {
+            "type": "url"
+        },
+        "footer_tagline": {
+            "type": "textarea"
+        },
+        "whatsapp_url": {
+            "type": "url"
+        },
+        "show_back_to_top": {
+            "type": "boolean"
+        },
+        "show_color_mode": {
+            "type": "boolean"
+        }
+    },
+    "defaults": {
+        "catalog_label": "Services",
+        "status_label": "Open for new projects",
+        "showcase_heading": "One theme. Every essential building block.",
+        "showcase_text": "This public sample demonstrates localized layouts, editable settings, reusable components, catalogs, galleries, video, contact forms, analytics consent, responsive navigation, and accessible interaction patterns.",
+        "header_cta_label": "Contact us",
+        "header_cta_url": "/contact",
+        "footer_tagline": "A flexible starting point for your next Eyivo theme.",
+        "show_back_to_top": true,
+        "show_color_mode": false,
+        "announcement_text": "Welcome to the Eyivo sample theme.",
+        "announcement_link_label": "Explore services",
+        "announcement_link_url": "/catalog"
+    },
+    "page_types": {
+        "home": {
+            "areas": {
+                "hero": {
+                    "allowed_components": [
+                        "eyivo:hero"
+                    ],
+                    "min": 0,
+                    "max": 1
+                },
+                "main": {
+                    "allowed_components": [
+                        "eyivo:rich_text",
+                        "eyivo:image_text",
+                        "eyivo:stats",
+                        "eyivo:feature_grid",
+                        "eyivo:service_grid",
+                        "eyivo:collection_grid",
+                        "eyivo:media_gallery",
+                        "eyivo:contact_actions",
+                        "eyivo:location_map",
+                        "eyivo:image_slider",
+                        "eyivo:search_filter",
+                        "eyivo:video",
+                        "eyivo:price_offer",
+                        "eyivo:announcement",
+                        "eyivo:article_list",
+                        "eyivo:faq",
+                        "eyivo:testimonials",
+                        "eyivo:logo_cloud",
+                        "eyivo:project_grid",
+                        "eyivo:team_grid",
+                        "eyivo:business_hours",
+                        "eyivo:download_list",
+                        "eyivo:tabs",
+                        "eyivo:credentials",
+                        "eyivo:product_specs",
+                        "eyivo:cta",
+                        "theme:capability_note"
+                    ]
+                },
+                "bottom": {
+                    "allowed_components": [
+                        "eyivo:lead_form",
+                        "eyivo:cta",
+                        "eyivo:contact_details",
+                        "eyivo:contact_actions"
+                    ],
+                    "min": 0
+                }
+            }
+        },
+        "page": {
+            "areas": {
+                "hero": {
+                    "allowed_components": [
+                        "eyivo:hero"
+                    ],
+                    "min": 0,
+                    "max": 1
+                },
+                "main": {
+                    "allowed_components": [
+                        "eyivo:rich_text",
+                        "eyivo:image_text",
+                        "eyivo:stats",
+                        "eyivo:feature_grid",
+                        "eyivo:service_grid",
+                        "eyivo:media_gallery",
+                        "eyivo:video",
+                        "eyivo:article_list",
+                        "eyivo:faq",
+                        "eyivo:testimonials",
+                        "eyivo:logo_cloud",
+                        "eyivo:project_grid",
+                        "eyivo:team_grid",
+                        "eyivo:business_hours",
+                        "eyivo:download_list",
+                        "eyivo:tabs",
+                        "eyivo:credentials",
+                        "eyivo:cta",
+                        "theme:capability_note"
+                    ]
+                },
+                "bottom": {
+                    "allowed_components": [
+                        "eyivo:lead_form",
+                        "eyivo:cta",
+                        "eyivo:contact_actions"
+                    ],
+                    "min": 0
+                }
+            }
+        },
+        "gallery": {
+            "areas": {
+                "intro": {
+                    "allowed_components": [
+                        "eyivo:hero",
+                        "eyivo:rich_text"
+                    ],
+                    "min": 0
+                },
+                "main": {
+                    "allowed_components": [
+                        "eyivo:media_gallery",
+                        "eyivo:image_slider",
+                        "eyivo:project_grid",
+                        "eyivo:cta"
+                    ],
+                    "min": 0
+                }
+            }
+        },
+        "contact": {
+            "areas": {
+                "intro": {
+                    "allowed_components": [
+                        "eyivo:hero",
+                        "eyivo:rich_text"
+                    ],
+                    "min": 0
+                },
+                "main": {
+                    "allowed_components": [
+                        "eyivo:contact_details",
+                        "eyivo:contact_actions",
+                        "eyivo:lead_form",
+                        "eyivo:location_map",
+                        "eyivo:business_hours",
+                        "eyivo:faq"
+                    ],
+                    "min": 0
+                }
+            }
+        },
+        "products": {
+            "areas": {
+                "intro": {
+                    "allowed_components": [
+                        "eyivo:hero",
+                        "eyivo:rich_text",
+                        "eyivo:search_filter"
+                    ],
+                    "min": 0
+                },
+                "main": {
+                    "allowed_components": [
+                        "eyivo:collection_grid",
+                        "eyivo:feature_grid",
+                        "eyivo:cta"
+                    ],
+                    "min": 0
+                }
+            }
+        },
+        "product": {
+            "areas": {
+                "intro": {
+                    "allowed_components": [
+                        "eyivo:hero"
+                    ],
+                    "min": 0,
+                    "max": 1
+                },
+                "main": {
+                    "allowed_components": [
+                        "eyivo:product_specs",
+                        "eyivo:media_gallery",
+                        "eyivo:download_list",
+                        "eyivo:tabs",
+                        "eyivo:faq",
+                        "eyivo:lead_form",
+                        "eyivo:cta"
+                    ],
+                    "min": 0
+                }
+            }
+        },
+        "videos": {
+            "areas": {
+                "intro": {
+                    "allowed_components": [
+                        "eyivo:hero",
+                        "eyivo:rich_text"
+                    ],
+                    "min": 0
+                },
+                "main": {
+                    "allowed_components": [
+                        "eyivo:video",
+                        "eyivo:cta"
+                    ],
+                    "min": 0
+                }
+            }
+        }
+    },
+    "components": {
+        "capability_note": {
+            "variants": [
+                "default",
+                "accent"
+            ],
+            "schema": {
+                "label": {
+                    "type": "text",
+                    "translatable": true
+                },
+                "heading": {
+                    "type": "text",
+                    "required": true,
+                    "translatable": true
+                },
+                "text": {
+                    "type": "textarea",
+                    "translatable": true
+                },
+                "link_label": {
+                    "type": "text",
+                    "translatable": true
+                },
+                "link_url": {
+                    "type": "url"
+                }
+            },
+            "defaults": {
+                "label": "Theme capability",
+                "heading": "Build a site from reusable content blocks.",
+                "text": "This is a theme-owned component. It can be added, translated, reordered, drafted, and published like an Eyivo core component.",
+                "link_label": "Explore"
+            }
+        }
+    }
+}

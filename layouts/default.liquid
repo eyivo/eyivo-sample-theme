@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="{{ locale.code }}" dir="{{ locale.direction }}" data-theme-key="{{ theme.key }}" data-layout="workbench">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    {% eyivo_head %}
+    <link rel="stylesheet" href="{{ 'css/base.css' | asset_url }}?v={{ assets.version }}">
+    <link rel="stylesheet" href="{{ 'css/theme.css' | asset_url }}?v={{ assets.version }}">
+</head>
+<body class="theme-shell theme-{{ theme.key }} layout-workbench"{% if company.brand_style %} style="{{ company.brand_style }}"{% endif %}>
+    <a class="skip-link" href="#main-content">{{ "Skip to content" | t }}</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"></div>
+
+    {% if theme.settings.announcement_text %}
+        <aside class="announcement-bar" aria-label="{{ 'Announcement' | t }}">
+            <div class="shell announcement-inner">
+                <span class="announcement-code" aria-hidden="true">NEW</span>
+                <span>{{ theme.settings.announcement_text }}</span>
+                {% if theme.settings.announcement_link_url %}<a href="{{ theme.settings.announcement_link_url | localized_url }}">{{ theme.settings.announcement_link_label | default: "Learn more" | t }} <span aria-hidden="true">→</span></a>{% endif %}
+            </div>
+        </aside>
+    {% endif %}
+
+    <header class="site-header theme-header sample-header" data-site-header>
+        <div class="shell sample-nav-row">
+            <a class="brand-mark" href="{{ locale.home_url }}" aria-label="{{ company.name }} home">
+                <span class="sample-brand-shape" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="brand-name">{{ company.name }}</span>
+            </a>
+            <nav class="desktop-nav" aria-label="{{ 'Primary navigation' | t }}">
+                {% for item in navigation.main %}<a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{% if item.kind == 'catalog' %}{{ theme.settings.catalog_label }}{% else %}{{ item.label }}{% endif %}</a>{% endfor %}
+            </nav>
+            <div class="header-actions">
+                <button class="icon-button" type="button" data-quick-open aria-label="{{ 'Open quick navigation' | t }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg></button>
+                {% if theme.settings.show_color_mode %}<button class="icon-button" type="button" data-color-mode aria-label="{{ 'Toggle color mode' | t }}"><span aria-hidden="true">◐</span></button>{% endif %}
+                <a class="button button-small header-cta" href="{{ theme.settings.header_cta_url | localized_url }}">{{ theme.settings.header_cta_label }}</a>
+                <button class="menu-toggle" type="button" data-menu-open aria-label="{{ 'Open menu' | t }}" aria-expanded="false"><span></span><span></span></button>
+            </div>
+        </div>
+        <div class="shell sample-context-row">
+            <span><i aria-hidden="true"></i>{{ theme.settings.status_label }}</span>
+            <span>{{ theme.settings.catalog_label }}</span>
+            {% if locale.available.size > 1 %}<nav class="locale-switcher" aria-label="{{ 'Language' | t }}">{% for language in locale.available %}<a href="{{ language.url }}" lang="{{ language.code }}" hreflang="{{ language.code }}"{% if language.current %} aria-current="page"{% endif %}>{{ language.native_name }}</a>{% endfor %}</nav>{% endif %}
+        </div>
+    </header>
+
+    <aside class="mobile-drawer" data-mobile-drawer aria-hidden="true">
+        <div class="drawer-head"><strong>{{ company.name }}</strong><button type="button" data-menu-close aria-label="{{ 'Close menu' | t }}">×</button></div>
+        <nav aria-label="{{ 'Mobile navigation' | t }}">{% for item in navigation.main %}<a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}><span>0{{ forloop.index }}</span>{% if item.kind == 'catalog' %}{{ theme.settings.catalog_label }}{% else %}{{ item.label }}{% endif %}</a>{% endfor %}</nav>
+        <div class="drawer-contact">{% if company.phone %}<a href="tel:{{ company.phone }}">{{ company.phone }}</a>{% endif %}{% if company.email %}<a href="mailto:{{ company.email }}">{{ company.email }}</a>{% endif %}</div>
+    </aside>
+    <div class="drawer-backdrop" data-menu-close></div>
+
+    {{ content | raw }}
+
+    <footer class="site-footer theme-footer sample-footer">
+        <div class="shell sample-footer-callout">
+            <span>01—07</span>
+            <div><p>{{ theme.settings.catalog_label }}</p><h2>{{ theme.settings.footer_tagline }}</h2></div>
+            <a class="button button-light" href="{{ theme.settings.header_cta_url | localized_url }}">{{ theme.settings.header_cta_label }} <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="shell footer-grid">
+            <div class="footer-lead"><a class="brand-mark brand-mark-footer" href="{{ locale.home_url }}"><span class="sample-brand-shape" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">{{ company.name }}</span></a><p>{{ company.description }}</p></div>
+            <div><p class="footer-label">{{ 'Explore' | t }}</p>{% for item in navigation.main %}<a href="{{ item.url }}">{% if item.kind == 'catalog' %}{{ theme.settings.catalog_label }}{% else %}{{ item.label }}{% endif %}</a>{% endfor %}</div>
+            <div><p class="footer-label">{{ 'Contact' | t }}</p>{% if company.phone %}<a href="tel:{{ company.phone }}">{{ company.phone }}</a>{% endif %}{% if company.email %}<a href="mailto:{{ company.email }}">{{ company.email }}</a>{% endif %}{% if company.address %}<span>{{ company.address }}</span>{% endif %}</div>
+            <div><p class="footer-label">{{ 'Follow' | t }}</p>{% for link in company.social_links %}<a href="{{ link.url }}" rel="noopener noreferrer nofollow">{{ link.label }}</a>{% endfor %}</div>
+        </div>
+        <div class="shell footer-base"><span>© {{ company.legal_name | default: company.name }}</span><span>Eyivo Theme API 1.0</span></div>
+    </footer>
+
+    <dialog class="quick-dialog" data-quick-dialog>
+        <form method="dialog"><button aria-label="{{ 'Close quick navigation' | t }}">×</button></form><p class="eyebrow">{{ 'Quick navigation' | t }}</p><label for="quick-search">{{ 'Where would you like to go?' | t }}</label>
+        <input id="quick-search" type="search" placeholder="{{ 'Type to filter pages' | t }}" autocomplete="off" data-quick-search>
+        <nav data-quick-results>{% for item in navigation.main %}<a href="{{ item.url }}" data-quick-item>{% if item.kind == 'catalog' %}{{ theme.settings.catalog_label }}{% else %}{{ item.label }}{% endif %}<span>↗</span></a>{% endfor %}</nav>
+    </dialog>
+    {% if company.phone or theme.settings.whatsapp_url %}<aside class="contact-dock" aria-label="{{ 'Quick contact' | t }}">{% if company.phone %}<a href="tel:{{ company.phone }}"><span>{{ 'Call' | t }}</span><strong>{{ company.phone }}</strong></a>{% endif %}{% if theme.settings.whatsapp_url %}<a href="{{ theme.settings.whatsapp_url | localized_url }}" rel="noopener"><span>WhatsApp</span><strong>{{ 'Message us' | t }}</strong></a>{% endif %}</aside>{% endif %}
+    {% if theme.settings.show_back_to_top %}<button class="back-to-top" type="button" data-back-to-top aria-label="{{ 'Back to top' | t }}">↑</button>{% endif %}
+    {% if consent.enabled %}<div class="consent-card" data-consent-banner hidden><div><strong>{{ consent.title }}</strong><p>{{ consent.text }}</p></div><div><button type="button" class="button button-ghost" data-consent-decline>{{ 'Decline' | t }}</button><button type="button" class="button" data-consent-accept>{{ 'Accept' | t }}</button></div></div>{% endif %}
+    {% for integration in analytics %}{% if integration.provider == 'ga4' and integration.measurement_id %}<script type="text/plain" data-consent="analytics" data-analytics="ga4" data-measurement-id="{{ integration.measurement_id }}"></script>{% endif %}{% if integration.provider == 'plausible' and integration.domain %}<script type="text/plain" data-consent="analytics" data-analytics="plausible" data-domain="{{ integration.domain }}"></script>{% endif %}{% endfor %}
+    <script src="{{ 'js/theme.js' | asset_url }}?v={{ assets.version }}" defer></script>
+</body>
+</html>

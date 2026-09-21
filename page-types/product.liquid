@@ -1,0 +1,6 @@
+<main id="main-content">
+    {{ areas.intro | raw }}
+    <section class="product-hero"><div class="shell product-hero-grid"><div><nav class="breadcrumbs" aria-label="{{ 'Breadcrumb' | t }}"><a href="{{ routes.home }}">{{ 'Home' | t }}</a><span>/</span><a href="{{ routes.catalog }}">{{ theme.settings.catalog_label }}</a><span>/</span><span aria-current="page">{{ product.title }}</span></nav><p class="eyebrow">{{ "Selected detail" | t }}</p><h1>{{ product.title }}</h1>{% if product.summary %}<p class="hero-summary">{{ product.summary }}</p>{% endif %}<a class="button" href="{{ routes.contact }}">{{ 'Request information' | t }}</a></div>{% if product.cover_media %}<figure><img src="{{ product.cover_media.url }}" alt="{{ product.title }}" width="{{ product.cover_media.width }}" height="{{ product.cover_media.height }}"></figure>{% endif %}</div></section>
+    {% if product.body %}<section class="section"><div class="shell prose-layout"><div class="prose-index"><span>{{ 'Details' | t }}</span><i></i></div><div class="prose"><p>{{ product.body }}</p></div></div></section>{% endif %}
+    {{ areas.main | raw }}
+</main>

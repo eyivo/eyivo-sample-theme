@@ -1,0 +1,6 @@
+<main id="main-content">
+    {{ areas.hero | raw }}
+    {% unless areas.hero %}<section class="page-hero inner-hero{% if page.hero_media %} has-image{% endif %}">{% if page.hero_media %}<img class="hero-backdrop" src="{{ page.hero_media.url }}" alt="" width="{{ page.hero_media.width }}" height="{{ page.hero_media.height }}">{% endif %}<div class="hero-shade"></div><div class="shell hero-content"><nav class="breadcrumbs" aria-label="{{ 'Breadcrumb' | t }}"><a href="{{ routes.home }}">{{ 'Home' | t }}</a><span>/</span><span aria-current="page">{{ page.title }}</span></nav><p class="eyebrow">{{ company.name }}</p><h1>{{ page.title }}</h1></div></section>{% endunless %}
+    {% if page.body %}<section class="section"><div class="shell prose-layout"><div class="prose-index"><span>{{ 'Overview' | t }}</span><i></i></div><div class="prose"><p>{{ page.body }}</p></div></div></section>{% endif %}
+    {{ areas.main | raw }}{{ areas.bottom | raw }}
+</main>

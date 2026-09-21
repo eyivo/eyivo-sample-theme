@@ -1,0 +1,44 @@
+<main id="main-content" class="sample-home">
+    {% if areas.hero %}
+        {{ areas.hero | raw }}
+    {% else %}
+        <section class="sample-home-hero{% if page.hero_media %} has-image{% endif %}">
+            {% if page.hero_media %}<img class="hero-backdrop" src="{{ page.hero_media.url }}" alt="" width="{{ page.hero_media.width }}" height="{{ page.hero_media.height }}">{% endif %}
+            <div class="shell sample-hero-grid">
+                <div class="sample-hero-copy">
+                    <p class="eyebrow"><span>01</span>{{ theme.settings.status_label }}</p>
+                    <h1>{{ company.name }}</h1>
+                    {% if company.description %}<p class="hero-summary">{{ company.description }}</p>{% endif %}
+                    <div class="button-row"><a class="button" href="{{ theme.settings.header_cta_url | localized_url }}">{{ theme.settings.header_cta_label }}</a><a class="text-link" href="{{ routes.catalog }}">{{ 'Explore' | t }} {{ theme.settings.catalog_label }} <span>↗</span></a></div>
+                </div>
+                <aside class="sample-hero-index" aria-label="{{ 'Theme highlights' | t }}">
+                    <p>Eyivo / Theme API 1.0</p>
+                    <ol><li><span>01</span>{{ 'Responsive' | t }}</li><li><span>02</span>{{ 'Localized' | t }}</li><li><span>03</span>{{ 'Composable' | t }}</li></ol>
+                </aside>
+            </div>
+        </section>
+    {% endif %}
+
+    {% eyivo_component "theme:capability_note",
+        label: "Sample theme",
+        heading: theme.settings.showcase_heading,
+        text: theme.settings.showcase_text,
+        link_label: theme.settings.catalog_label,
+        link_url: routes.catalog
+    %}
+
+    <div class="sample-component-flow">{{ areas.main | raw }}</div>
+
+    {% if products.size > 0 %}
+        <section class="section sample-native-collection">
+            <div class="shell"><div class="section-heading"><div><p class="eyebrow">{{ theme.settings.catalog_label }}</p><h2>{{ 'Selected work' | t }}</h2></div><a class="text-link" href="{{ routes.catalog }}">{{ 'View the full collection' | t }} <span>↗</span></a></div>
+            <div class="native-card-grid">{% for product in products %}<a class="native-card" href="{{ product.url }}">{% if product.cover_media %}<img src="{{ product.cover_media.url }}" alt="{{ product.title }}" loading="lazy" width="{{ product.cover_media.width }}" height="{{ product.cover_media.height }}">{% endif %}<div><span>0{{ forloop.index }}</span><h3>{{ product.title }}</h3><p>{{ product.summary }}</p></div></a>{% endfor %}</div></div>
+        </section>
+    {% endif %}
+
+    {% for gallery in galleries %}
+        <section class="section native-gallery-preview sample-native-gallery"><div class="shell"><div class="section-heading"><div><p class="eyebrow">{{ 'Gallery' | t }}</p><h2>{{ gallery.title }}</h2></div><a class="text-link" href="{{ gallery.url }}">{{ 'Open the story' | t }} <span>↗</span></a></div><div class="gallery-grid fp-gallery-{{ gallery.presentation_mode }}">{% for item in gallery.items %}<figure>{% if item.media %}<img src="{{ item.media.url }}" alt="{{ item.alt_text }}" loading="lazy" width="{{ item.media.width }}" height="{{ item.media.height }}">{% endif %}{% if item.caption %}<figcaption>{{ item.caption }}</figcaption>{% endif %}</figure>{% endfor %}</div></div></section>
+    {% endfor %}
+
+    {{ areas.bottom | raw }}
+</main>

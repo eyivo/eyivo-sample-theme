@@ -1,0 +1,41 @@
+<main id="main-content">
+    <section class="page-hero inner-hero">
+        <div class="shell hero-content">
+            <nav class="breadcrumbs" aria-label="{{ 'Breadcrumb' | t }}">
+                <a href="{{ routes.home }}">{{ 'Home' | t }}</a><span>/</span><span aria-current="page">{{ "Videos" | t }}</span>
+            </nav>
+            <p class="eyebrow">{{ "Watch and discover" | t }}</p>
+            <h1>{{ "Videos" | t }}</h1>
+        </div>
+    </section>
+
+    {{ areas.intro | raw }}
+
+    <section class="section">
+        <div class="shell video-grid">
+            {% for video in videos %}
+                <article class="video-card">
+                    {% if video.media %}
+                        <video controls preload="metadata" poster="{{ video.media.url }}">
+                            <source src="{{ video.media.url }}">
+                        </video>
+                    {% elsif video.source_url %}
+                        <a class="video-placeholder" href="{{ video.source_url }}" rel="noopener">{{ 'Play video' | t }} <span>↗</span></a>
+                    {% endif %}
+                    <h2>{{ video.title }}</h2>
+                    <p>{{ video.description }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    {{ areas.main | raw }}
+
+    {% eyivo_component "eyivo:cta",
+        eyebrow: page.title,
+        heading: theme.settings.footer_tagline,
+        text: company.description,
+        button_label: theme.settings.catalog_label,
+        button_url: routes.catalog
+    %}
+</main>
