@@ -1,4 +1,1227 @@
 {
-  "label": "Northstar Studio",
-  "summary": "Strategy, design, and digital experiences for ambitious organizations."
+    "default_locale": "en",
+    "schema_version": 2,
+    "label": "Northstar Studio",
+    "summary": "Strategy, design, and digital experiences for ambitious organizations.",
+    "media": {
+        "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg": {
+            "public_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+            "mime_type": "image/jpeg",
+            "original_name": "sample-theme-forgeworks-b2b-demo-1-pexels-8865187.jpg",
+            "bytes": 191828,
+            "width": 6472,
+            "height": 4315,
+            "content_hash": "e6e1e9bb38296e30519c2ac7d5180f3fd4bd8a47ac39f8cd92de914d3fee9c1f"
+        },
+        "media/115-sample-theme-forgeworks-b2b-demo-2-pexels-8956445jpg.jpg": {
+            "public_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg",
+            "mime_type": "image/jpeg",
+            "original_name": "sample-theme-forgeworks-b2b-demo-2-pexels-8956445.jpg",
+            "bytes": 179193,
+            "width": 4016,
+            "height": 6016,
+            "content_hash": "37138e62bdd8c63b5fc9ab67ac98dd91722f7c97835f1195e56880831e3d8460"
+        },
+        "media/116-sample-theme-forgeworks-b2b-demo-3-pexels-28929510jpg.jpg": {
+            "public_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-3-pexels-12899168-7ac8550a.jpg",
+            "mime_type": "image/jpeg",
+            "original_name": "sample-theme-forgeworks-b2b-demo-3-pexels-28929510.jpg",
+            "bytes": 192464,
+            "width": 4000,
+            "height": 6000,
+            "content_hash": "2bb54a2c61fba976621bc6eb2d4c3b1da8ff5d447de3919bb88d81e7827534ac"
+        }
+    },
+    "company": {
+        "display_name": "Northstar Studio",
+        "legal_name": "Northstar Studio Ltd.",
+        "description": "Strategy, design, and digital experiences for ambitious organizations.",
+        "address": "24 Meridian Street, London, EC1V 2NX",
+        "phone": "+44 20 7946 0284",
+        "email": "hello@northstar.example",
+        "map_link": "https://maps.google.com/?q=London",
+        "social_links": {
+            "linkedin": "https://www.linkedin.com",
+            "instagram": "https://www.instagram.com"
+        },
+        "brand_colors": {
+            "primary": "#3155f5",
+            "secondary": "#ff6b35"
+        },
+        "logo_asset": null,
+        "favicon_asset": null,
+        "translations": {
+            "en": {
+                "display_name": "Northstar Studio",
+                "legal_name": "Northstar Studio Ltd.",
+                "description": "Strategy, design, and digital experiences for ambitious organizations.",
+                "address": "24 Meridian Street, London, EC1V 2NX"
+            },
+            "tr": {
+                "display_name": "Northstar Studio",
+                "legal_name": "Northstar Studio Ltd.",
+                "description": "Hedefleri büyük kuruluşlar için strateji, tasarım ve dijital deneyimler.",
+                "address": "24 Meridian Street, London, EC1V 2NX"
+            }
+        }
+    },
+    "theme_settings": {
+        "settings": {
+            "accent_color": "#3155f5",
+            "secondary_color": "#ff6b35",
+            "catalog_label": "Capabilities",
+            "status_label": "Open for new projects",
+            "header_cta_label": "Start a project",
+            "header_cta_url": "/contact",
+            "footer_tagline": "Make the complex feel clear, useful, and memorable.",
+            "announcement_text": "The public Eyivo sample theme is ready to explore.",
+            "announcement_link_label": "View capabilities",
+            "announcement_link_url": "/catalog",
+            "whatsapp_url": "https://wa.me/442079460284",
+            "show_back_to_top": true,
+            "show_color_mode": true
+        },
+        "translations": {
+            "en": {
+                "catalog_label": "Capabilities",
+                "status_label": "Open for new projects",
+                "header_cta_label": "Start a project",
+                "footer_tagline": "Make the complex feel clear, useful, and memorable.",
+                "announcement_text": "The public Eyivo sample theme is ready to explore.",
+                "announcement_link_label": "View capabilities"
+            },
+            "tr": {
+                "catalog_label": "Uzmanlık alanları",
+                "status_label": "Yeni projelere açığız",
+                "header_cta_label": "Proje başlatın",
+                "footer_tagline": "Karmaşık olanı anlaşılır, kullanışlı ve akılda kalıcı hâle getirin.",
+                "announcement_text": "Eyivo örnek teması keşfetmeniz için hazır.",
+                "announcement_link_label": "Uzmanlık alanlarını görün"
+            }
+        }
+    },
+    "pages": [
+        {
+            "type": "home",
+            "sort_order": 100,
+            "navigation_visible": true,
+            "settings": null,
+            "hero_asset": null,
+            "translations": {
+                "en": {
+                    "slug": "home",
+                    "title": "Home",
+                    "body": null,
+                    "meta_title": "Home | Northstar Studio",
+                    "meta_description": "Demo content for Eyivo Sample Company."
+                },
+                "tr": {
+                    "slug": "ana-sayfa",
+                    "title": "Ana sayfa",
+                    "body": null,
+                    "meta_title": "Ana sayfa | Northstar Studio",
+                    "meta_description": "Eyivo örnek şirketi için demo içerik."
+                }
+            },
+            "components": [
+                {
+                    "component_type": "eyivo:lead_form",
+                    "area": "bottom",
+                    "position": 100,
+                    "variant": null,
+                    "data": {
+                        "form_binding": "quote_request"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Start here",
+                            "heading": "Tell us what a good outcome looks like.",
+                            "text": "Share a little context and we will reply with a useful next step.",
+                            "submit_label": "Send enquiry"
+                        },
+                        "tr": {
+                            "eyebrow": "Buradan başlayın",
+                            "heading": "Nasıl bir sonuç istediğinizi bize anlatın.",
+                            "text": "Projenizden kısaca bahsedin; uygun bir sonraki adımla size dönelim.",
+                            "submit_label": "Talep gönder"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:hero",
+                    "area": "hero",
+                    "position": 100,
+                    "variant": "editorial",
+                    "data": {
+                        "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                        "primary_url": "/contact",
+                        "secondary_url": "/about"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Independent creative studio",
+                            "heading": "Ideas with direction. Design with purpose.",
+                            "summary": "We turn complex stories into clear brands, useful products, and digital experiences people remember.",
+                            "image_alt": "Northstar Studio team collaborating",
+                            "primary_label": "Start a project",
+                            "secondary_label": "Our approach"
+                        },
+                        "tr": {
+                            "eyebrow": "Bağımsız yaratıcı stüdyo",
+                            "heading": "Yön veren fikirler. Amaca hizmet eden tasarım.",
+                            "summary": "Karmaşık hikâyeleri anlaşılır markalara, kullanışlı ürünlere ve akılda kalan dijital deneyimlere dönüştürüyoruz.",
+                            "image_alt": "Birlikte çalışan Northstar Studio ekibi",
+                            "primary_label": "Proje başlatın",
+                            "secondary_label": "Yaklaşımımız"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:stats",
+                    "area": "main",
+                    "position": 100,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "At a glance",
+                            "heading": "Small team. Wide perspective.",
+                            "items": [
+                                {
+                                    "value": "18+",
+                                    "label": "Years of experience",
+                                    "note": "Across sectors and scales"
+                                },
+                                {
+                                    "value": "42",
+                                    "label": "Products launched",
+                                    "note": "Built for real use"
+                                },
+                                {
+                                    "value": "94%",
+                                    "label": "Referral-led work",
+                                    "note": "Partnerships that last"
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "eyebrow": "Bir bakışta",
+                            "heading": "Küçük ekip. Geniş bakış açısı.",
+                            "items": [
+                                {
+                                    "value": "18+",
+                                    "label": "Yıllık deneyim",
+                                    "note": "Farklı sektörlerde ve ölçeklerde"
+                                },
+                                {
+                                    "value": "42",
+                                    "label": "Hayata geçirilen ürün",
+                                    "note": "Gerçek ihtiyaçlar için geliştirildi"
+                                },
+                                {
+                                    "value": "94%",
+                                    "label": "Tavsiye ile gelen işler",
+                                    "note": "Kalıcı iş ortaklıkları"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:feature_grid",
+                    "area": "main",
+                    "position": 200,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "What we bring",
+                            "heading": "A joined-up creative practice.",
+                            "intro": "Senior thinkers and makers stay close to the work from first question to final release.",
+                            "items": [
+                                {
+                                    "icon": "↗",
+                                    "title": "Strategy",
+                                    "text": "Find the useful truth and turn it into a decisive direction."
+                                },
+                                {
+                                    "icon": "✦",
+                                    "title": "Identity",
+                                    "text": "Build a coherent system that is recognizable at every scale."
+                                },
+                                {
+                                    "icon": "◎",
+                                    "title": "Digital",
+                                    "text": "Create accessible experiences that feel fast, focused, and human."
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "eyebrow": "Neler sunuyoruz",
+                            "heading": "Bir bütün olarak yaratıcı çalışma.",
+                            "intro": "Deneyimli ekibimiz ilk sorudan son yayına kadar çalışmanın içinde yer alır.",
+                            "items": [
+                                {
+                                    "icon": "↗",
+                                    "title": "Strateji",
+                                    "text": "İşe yarayan bilgiyi bulun ve net bir yöne dönüştürün."
+                                },
+                                {
+                                    "icon": "✦",
+                                    "title": "Kimlik",
+                                    "text": "Her ölçekte tanınabilen, tutarlı bir sistem kurun."
+                                },
+                                {
+                                    "icon": "◎",
+                                    "title": "Dijital",
+                                    "text": "Hızlı, odaklı ve insanı merkeze alan erişilebilir deneyimler oluşturun."
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:image_text",
+                    "area": "main",
+                    "position": 300,
+                    "variant": "image_right",
+                    "data": {
+                        "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg",
+                        "button_url": "/about"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "How we work",
+                            "heading": "Clarity before decoration.",
+                            "body": "We ask the difficult questions early, prototype the important moments, and build systems your team can confidently own.",
+                            "image_alt": "A creative workshop at Northstar Studio",
+                            "badge": "Built together",
+                            "button_label": "Meet the studio"
+                        },
+                        "tr": {
+                            "eyebrow": "Nasıl çalışıyoruz",
+                            "heading": "Önce netlik, sonra görsel tasarım.",
+                            "body": "Zor soruları baştan sorar, önemli aşamaları prototiplerle dener ve ekibinizin güvenle yönetebileceği sistemler kurarız.",
+                            "image_alt": "Northstar Studio’da yaratıcı bir atölye çalışması",
+                            "badge": "Birlikte geliştirildi",
+                            "button_label": "Stüdyoyu tanıyın"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:service_grid",
+                    "area": "main",
+                    "position": 400,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Capabilities",
+                            "heading": "Choose a starting point.",
+                            "intro": "Every engagement is shaped around the outcome—not a fixed package.",
+                            "items": [
+                                {
+                                    "title": "Brand systems",
+                                    "text": "Positioning, identity, guidelines, and rollout.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "title": "Digital products",
+                                    "text": "Research, UX, interface design, and prototypes.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "title": "Content platforms",
+                                    "text": "Editorial systems that stay useful as you grow.",
+                                    "url": "/contact"
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "eyebrow": "Uzmanlık alanları",
+                            "heading": "Bir başlangıç noktası seçin.",
+                            "intro": "Her çalışma, sabit bir pakete göre değil, hedeflenen sonuca göre şekillenir.",
+                            "items": [
+                                {
+                                    "title": "Marka sistemleri",
+                                    "text": "Konumlandırma, kimlik, kılavuzlar ve uygulama.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "title": "Dijital ürünler",
+                                    "text": "Araştırma, kullanıcı deneyimi, arayüz tasarımı ve prototipler.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "title": "İçerik platformları",
+                                    "text": "Siz büyürken kullanışlılığını koruyan yayın sistemleri.",
+                                    "url": "/contact"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:event_list",
+                    "area": "main",
+                    "position": 150,
+                    "variant": null,
+                    "data": {},
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Programme preview",
+                            "heading": "Ideas worth gathering around",
+                            "intro": "Explore ways to meet Northstar Studio. These are illustrative event formats; dates and venues have not been announced.",
+                            "items": [
+                                {
+                                    "date_label": "Date to be announced",
+                                    "category": "Studio",
+                                    "title": "Open studio evening",
+                                    "summary": "Meet the team and see how a brief becomes a finished piece of work.",
+                                    "location": "Venue to be announced",
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "image_alt": "",
+                                    "url": "/contact",
+                                    "link_label": "Ask a question"
+                                },
+                                {
+                                    "date_label": "Date to be announced",
+                                    "category": "Workshop",
+                                    "title": "Design process workshop",
+                                    "summary": "Explore the practical steps behind a clear, useful design system.",
+                                    "location": "Venue to be announced",
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg",
+                                    "image_alt": "",
+                                    "url": "/contact",
+                                    "link_label": "Ask a question"
+                                },
+                                {
+                                    "date_label": "Date to be announced",
+                                    "category": "Conversation",
+                                    "title": "Creative project clinic",
+                                    "summary": "Bring a question about your next project and talk through possible approaches.",
+                                    "location": "Venue to be announced",
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-3-pexels-12899168-7ac8550a.jpg",
+                                    "image_alt": "",
+                                    "url": "/contact",
+                                    "link_label": "Ask a question"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:media_gallery",
+                    "area": "main",
+                    "position": 500,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Selected moments",
+                            "heading": "Work in progress.",
+                            "items": [
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "image_alt": "Studio project wall",
+                                    "caption": "Direction"
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg",
+                                    "image_alt": "Design review",
+                                    "caption": "Iteration"
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-3-pexels-12899168-7ac8550a.jpg",
+                                    "image_alt": "Finished product",
+                                    "caption": "Delivery"
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "eyebrow": "Seçili anlar",
+                            "heading": "Devam eden çalışmalar.",
+                            "items": [
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "image_alt": "Stüdyodaki proje panosu",
+                                    "caption": "Yön"
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg",
+                                    "image_alt": "Tasarım değerlendirmesi",
+                                    "caption": "İyileştirme"
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-3-pexels-12899168-7ac8550a.jpg",
+                                    "image_alt": "Tamamlanan ürün",
+                                    "caption": "Teslim"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:testimonials",
+                    "area": "main",
+                    "position": 600,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Client perspective",
+                            "heading": "Trusted when the answer is not obvious.",
+                            "items": [
+                                {
+                                    "quote": "Northstar made a complicated transformation feel focused, collaborative, and genuinely exciting.",
+                                    "name": "Maya Chen",
+                                    "role": "Chief Product Officer"
+                                },
+                                {
+                                    "quote": "The identity is distinctive, but the system behind it is what changed how our whole team works.",
+                                    "name": "Alex Morgan",
+                                    "role": "Managing Director"
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "eyebrow": "Müşterilerin gözünden",
+                            "heading": "Yanıt net olmadığında güvenilir bir ortak.",
+                            "items": [
+                                {
+                                    "quote": "Northstar, karmaşık bir dönüşümü odaklı, iş birliğine açık ve heyecan verici bir çalışmaya dönüştürdü.",
+                                    "name": "Maya Chen",
+                                    "role": "Ürün Direktörü"
+                                },
+                                {
+                                    "quote": "Kimlik dikkat çekici; ancak tüm ekibimizin çalışma biçimini değiştiren, arkasındaki sistem oldu.",
+                                    "name": "Alex Morgan",
+                                    "role": "Genel Müdür"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:faq",
+                    "area": "main",
+                    "position": 700,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Good questions",
+                            "heading": "A few useful answers.",
+                            "items": [
+                                {
+                                    "question": "What size projects do you take on?",
+                                    "answer": "We work on focused sprints and longer transformations, usually with a senior internal sponsor."
+                                },
+                                {
+                                    "question": "Can you work with our existing team?",
+                                    "answer": "Yes. Collaborative delivery and clear handover are part of every engagement."
+                                },
+                                {
+                                    "question": "Do you support launch?",
+                                    "answer": "We can stay through implementation, quality assurance, training, and rollout."
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "eyebrow": "Önemli sorular",
+                            "heading": "Birkaç yararlı yanıt.",
+                            "items": [
+                                {
+                                    "question": "Hangi büyüklükte projeler üstleniyorsunuz?",
+                                    "answer": "Genellikle kurum içinden yetkili bir sorumluyla, kısa ve odaklı çalışmalar ile uzun vadeli dönüşümler yürütüyoruz."
+                                },
+                                {
+                                    "question": "Mevcut ekibimizle çalışabilir misiniz?",
+                                    "answer": "Evet. Birlikte üretim ve açık bir devir süreci her çalışmamızın parçasıdır."
+                                },
+                                {
+                                    "question": "Yayına geçişte destek sağlıyor musunuz?",
+                                    "answer": "Uygulama, kalite kontrol, eğitim ve yayına geçiş boyunca destek sağlayabiliriz."
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:logo_cloud",
+                    "area": "main",
+                    "position": 800,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "heading": "Built with ambitious teams.",
+                            "items": [
+                                {
+                                    "name": "Orion"
+                                },
+                                {
+                                    "name": "Fieldwork"
+                                },
+                                {
+                                    "name": "Common"
+                                },
+                                {
+                                    "name": "Meridian"
+                                },
+                                {
+                                    "name": "North"
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "heading": "Hedefleri büyük ekiplerle geliştirildi.",
+                            "items": [
+                                {
+                                    "name": "Orion"
+                                },
+                                {
+                                    "name": "Fieldwork"
+                                },
+                                {
+                                    "name": "Common"
+                                },
+                                {
+                                    "name": "Meridian"
+                                },
+                                {
+                                    "name": "North"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "theme:capability_note",
+                    "area": "main",
+                    "position": 900,
+                    "variant": "accent",
+                    "data": {
+                        "link_url": "/catalog",
+                        "text": "<div data-eyivo-rich-text><p>A theme-owned section with <strong>formatted content</strong>.</p><ul><li>Translate the text in the editor.</li><li>Use the page-link picker to link to your pages.</li></ul></div>"
+                    },
+                    "translations": {
+                        "en": {
+                            "label": "Theme-owned component",
+                            "heading": "Core components—and room for your own.",
+                            "text": "<div data-eyivo-rich-text><p>A theme-owned section with <strong>formatted content</strong>.</p><ul><li>Translate the text in the editor.</li><li>Use the page-link picker to link to your pages.</li></ul></div>",
+                            "link_label": "Explore capabilities"
+                        },
+                        "tr": {
+                            "label": "Temaya ait bileşen",
+                            "heading": "Temel bileşenler ve kendi bileşenleriniz için alan.",
+                            "text": "<div data-eyivo-rich-text><p><strong>Biçimlendirilmiş içerik</strong> sunan, temaya ait bir bölüm.</p><ul><li>Metni düzenleyicide çevirin.</li><li>Sayfalarınıza bağlantı vermek için sayfa bağlantısı seçicisini kullanın.</li></ul></div>",
+                            "link_label": "Uzmanlık alanlarını keşfedin"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "about",
+            "sort_order": 200,
+            "navigation_visible": true,
+            "settings": null,
+            "hero_asset": null,
+            "translations": {
+                "en": {
+                    "slug": "about",
+                    "title": "About",
+                    "body": null,
+                    "meta_title": "About | Northstar Studio",
+                    "meta_description": "Demo content for About Eyivo Sample Company."
+                },
+                "tr": {
+                    "slug": "hakkimizda",
+                    "title": "Hakkımızda",
+                    "body": null,
+                    "meta_title": "Hakkımızda | Northstar Studio",
+                    "meta_description": "Eyivo örnek şirketinin hakkımızda sayfası için demo içerik."
+                }
+            },
+            "components": [
+                {
+                    "component_type": "eyivo:hero",
+                    "area": "hero",
+                    "position": 100,
+                    "variant": null,
+                    "data": {
+                        "primary_url": "https://example.test/contact"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Demo website",
+                            "heading": "Northstar Studio",
+                            "summary": "Strategy, design, and digital experiences for ambitious organizations.",
+                            "primary_label": "Contact us"
+                        },
+                        "tr": {
+                            "eyebrow": "Demo web sitesi",
+                            "heading": "Northstar Studio",
+                            "summary": "Hedefleri büyük kuruluşlar için strateji, tasarım ve dijital deneyimler.",
+                            "primary_label": "Bize ulaşın"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:rich_text",
+                    "area": "main",
+                    "position": 100,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Our approach",
+                            "heading": "Made to become your own.",
+                            "body": "Strategy, design, and digital experiences for ambitious organizations."
+                        },
+                        "tr": {
+                            "eyebrow": "Yaklaşımımız",
+                            "heading": "Kendi sitenize dönüştürmeniz için hazır.",
+                            "body": "Hedefleri büyük kuruluşlar için strateji, tasarım ve dijital deneyimler."
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "contact",
+            "sort_order": 300,
+            "navigation_visible": true,
+            "settings": null,
+            "hero_asset": null,
+            "translations": {
+                "en": {
+                    "slug": "contact",
+                    "title": "Contact",
+                    "body": null,
+                    "meta_title": "Contact | Northstar Studio",
+                    "meta_description": "Demo content for Contact Eyivo Sample Company."
+                },
+                "tr": {
+                    "slug": "iletisim",
+                    "title": "İletişim",
+                    "body": null,
+                    "meta_title": "İletişim | Northstar Studio",
+                    "meta_description": "Eyivo örnek şirketinin iletişim sayfası için demo içerik."
+                }
+            },
+            "components": [
+                {
+                    "component_type": "eyivo:hero",
+                    "area": "intro",
+                    "position": 100,
+                    "variant": null,
+                    "data": {
+                        "primary_url": "https://example.test/contact"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Demo website",
+                            "heading": "Northstar Studio",
+                            "summary": "Strategy, design, and digital experiences for ambitious organizations.",
+                            "primary_label": "Contact us"
+                        },
+                        "tr": {
+                            "eyebrow": "Demo web sitesi",
+                            "heading": "Northstar Studio",
+                            "summary": "Hedefleri büyük kuruluşlar için strateji, tasarım ve dijital deneyimler.",
+                            "primary_label": "Bize ulaşın"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:rich_text",
+                    "area": "intro",
+                    "position": 200,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Our approach",
+                            "heading": "Made to become your own.",
+                            "body": "Strategy, design, and digital experiences for ambitious organizations."
+                        },
+                        "tr": {
+                            "eyebrow": "Yaklaşımımız",
+                            "heading": "Kendi sitenize dönüştürmeniz için hazır.",
+                            "body": "Hedefleri büyük kuruluşlar için strateji, tasarım ve dijital deneyimler."
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:contact_details",
+                    "area": "main",
+                    "position": 100,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Get in touch",
+                            "heading": "Let’s start a conversation."
+                        },
+                        "tr": {
+                            "eyebrow": "İletişime geçin",
+                            "heading": "Birlikte konuşmaya başlayalım."
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "page",
+            "sort_order": 400,
+            "navigation_visible": false,
+            "settings": null,
+            "hero_asset": null,
+            "translations": {
+                "en": {
+                    "slug": "working-together",
+                    "title": "Working together",
+                    "body": "<div data-eyivo-rich-text><h2>A clear path from idea to launch</h2><p>We combine <strong>strategy and design</strong> with practical delivery.</p><ul><li>Define your goals together.</li><li>Review the work in small steps.</li><li>Launch with a plan for what comes next.</li></ul><p><a href=\"/contact\">Talk to our team</a> to get started.</p></div>",
+                    "meta_title": "Working together | Northstar Studio",
+                    "meta_description": "How Northstar Studio approaches a new project."
+                },
+                "tr": {
+                    "slug": "birlikte-calismak",
+                    "title": "Birlikte çalışmak",
+                    "body": "<div data-eyivo-rich-text><h2>Fikirden yayına açık bir yol</h2><p><strong>Strateji ve tasarımı</strong> uygulanabilir çözümlerle birleştiriyoruz.</p><ul><li>Hedeflerinizi birlikte belirleyin.</li><li>Çalışmayı küçük adımlarla değerlendirin.</li><li>Sonraki adımları planlayarak yayına geçin.</li></ul><p>Başlamak için <a href=\"/contact\">ekibimizle konuşun</a>.</p></div>",
+                    "meta_title": "Birlikte çalışmak | Northstar Studio",
+                    "meta_description": "Northstar Studio yeni bir projeye nasıl yaklaşır?"
+                }
+            },
+            "components": []
+        },
+        {
+            "type": "page",
+            "sort_order": 2,
+            "navigation_visible": true,
+            "settings": null,
+            "translations": {
+                "en": {
+                    "slug": "events",
+                    "title": "Events",
+                    "body": "Explore illustrative ways to meet Northstar Studio. Dates and venues have not been announced.",
+                    "meta_title": "Events | Northstar Studio",
+                    "meta_description": "Explore example events and gatherings from Northstar Studio. Dates and venues have not been announced."
+                }
+            },
+            "components": [
+                {
+                    "component_type": "eyivo:event_list",
+                    "area": "main",
+                    "position": 100,
+                    "variant": null,
+                    "data": {},
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Programme preview",
+                            "heading": "Ideas worth gathering around",
+                            "intro": "Explore ways to meet Northstar Studio. These are illustrative event formats; dates and venues have not been announced.",
+                            "items": [
+                                {
+                                    "date_label": "Date to be announced",
+                                    "category": "Studio",
+                                    "title": "Open studio evening",
+                                    "summary": "Meet the team and see how a brief becomes a finished piece of work.",
+                                    "location": "Venue to be announced",
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "image_alt": "",
+                                    "url": "/contact",
+                                    "link_label": "Ask a question"
+                                },
+                                {
+                                    "date_label": "Date to be announced",
+                                    "category": "Workshop",
+                                    "title": "Design process workshop",
+                                    "summary": "Explore the practical steps behind a clear, useful design system.",
+                                    "location": "Venue to be announced",
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg",
+                                    "image_alt": "",
+                                    "url": "/contact",
+                                    "link_label": "Ask a question"
+                                },
+                                {
+                                    "date_label": "Date to be announced",
+                                    "category": "Conversation",
+                                    "title": "Creative project clinic",
+                                    "summary": "Bring a question about your next project and talk through possible approaches.",
+                                    "location": "Venue to be announced",
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-3-pexels-12899168-7ac8550a.jpg",
+                                    "image_alt": "",
+                                    "url": "/contact",
+                                    "link_label": "Ask a question"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "catalog": [
+        {
+            "sort_order": 100,
+            "cover_asset": "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg",
+            "translations": {
+                "en": {
+                    "slug": "brand-transformation",
+                    "title": "Brand transformation",
+                    "summary": "A clear strategic and visual system for the next stage of growth.",
+                    "body": "Every engagement combines senior attention, practical collaboration, and a system your team can continue to use.",
+                    "meta_title": null,
+                    "meta_description": null
+                },
+                "tr": {
+                    "slug": "marka-donusumu",
+                    "title": "Marka dönüşümü",
+                    "summary": "Büyümenin bir sonraki aşaması için net bir stratejik ve görsel sistem.",
+                    "body": "Her çalışma, deneyimli uzmanların katkısını, uygulamaya dönük iş birliğini ve ekibinizin kullanmaya devam edebileceği bir sistemi bir araya getirir.",
+                    "meta_title": null,
+                    "meta_description": null
+                }
+            }
+        },
+        {
+            "sort_order": 200,
+            "cover_asset": "media/115-sample-theme-forgeworks-b2b-demo-2-pexels-8956445jpg.jpg",
+            "translations": {
+                "en": {
+                    "slug": "digital-product-sprint",
+                    "title": "Digital product sprint",
+                    "summary": "A focused route from product question to validated experience.",
+                    "body": "Every engagement combines senior attention, practical collaboration, and a system your team can continue to use.",
+                    "meta_title": null,
+                    "meta_description": null
+                },
+                "tr": {
+                    "slug": "dijital-urun-calismasi",
+                    "title": "Dijital ürün çalışması",
+                    "summary": "Ürün sorusundan doğrulanmış deneyime odaklı bir yol.",
+                    "body": "Her çalışma, deneyimli uzmanların katkısını, uygulamaya dönük iş birliğini ve ekibinizin kullanmaya devam edebileceği bir sistemi bir araya getirir.",
+                    "meta_title": null,
+                    "meta_description": null
+                }
+            }
+        },
+        {
+            "sort_order": 300,
+            "cover_asset": "media/116-sample-theme-forgeworks-b2b-demo-3-pexels-28929510jpg.jpg",
+            "translations": {
+                "en": {
+                    "slug": "content-platform",
+                    "title": "Content platform",
+                    "summary": "A flexible editorial foundation designed for real teams.",
+                    "body": "Every engagement combines senior attention, practical collaboration, and a system your team can continue to use.",
+                    "meta_title": null,
+                    "meta_description": null
+                },
+                "tr": {
+                    "slug": "icerik-platformu",
+                    "title": "İçerik platformu",
+                    "summary": "Gerçek ekipler için tasarlanmış esnek bir yayın altyapısı.",
+                    "body": "Her çalışma, deneyimli uzmanların katkısını, uygulamaya dönük iş birliğini ve ekibinizin kullanmaya devam edebileceği bir sistemi bir araya getirir.",
+                    "meta_title": null,
+                    "meta_description": null
+                }
+            }
+        }
+    ],
+    "galleries": [
+        {
+            "presentation_mode": "grid",
+            "sort_order": 100,
+            "translations": {
+                "en": {
+                    "slug": "demo-gallery",
+                    "title": "Northstar Studio gallery",
+                    "description": "A visual record of ideas moving from workshop to launch."
+                },
+                "tr": {
+                    "slug": "demo-galeri",
+                    "title": "Northstar Studio galerisi",
+                    "description": "Atölyeden yayına ilerleyen fikirlerin görsel kaydı."
+                }
+            },
+            "items": [
+                {
+                    "asset": "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg",
+                    "sort_order": 100,
+                    "title": null,
+                    "caption": null,
+                    "alt_text": null,
+                    "translations": {
+                        "en": {
+                            "title": "Studio moment 1",
+                            "caption": "A closer look at our work.",
+                            "alt_text": "Northstar Studio project image 1"
+                        },
+                        "tr": {
+                            "title": "Stüdyodan bir an 1",
+                            "caption": "Çalışmalarımıza yakından bir bakış.",
+                            "alt_text": "Northstar Studio proje görseli 1"
+                        }
+                    }
+                },
+                {
+                    "asset": "media/115-sample-theme-forgeworks-b2b-demo-2-pexels-8956445jpg.jpg",
+                    "sort_order": 200,
+                    "title": null,
+                    "caption": null,
+                    "alt_text": null,
+                    "translations": {
+                        "en": {
+                            "title": "Studio moment 2",
+                            "caption": "A closer look at our work.",
+                            "alt_text": "Northstar Studio project image 2"
+                        },
+                        "tr": {
+                            "title": "Stüdyodan bir an 2",
+                            "caption": "Çalışmalarımıza yakından bir bakış.",
+                            "alt_text": "Northstar Studio proje görseli 2"
+                        }
+                    }
+                },
+                {
+                    "asset": "media/116-sample-theme-forgeworks-b2b-demo-3-pexels-28929510jpg.jpg",
+                    "sort_order": 300,
+                    "title": null,
+                    "caption": null,
+                    "alt_text": null,
+                    "translations": {
+                        "en": {
+                            "title": "Studio moment 3",
+                            "caption": "A closer look at our work.",
+                            "alt_text": "Northstar Studio project image 3"
+                        },
+                        "tr": {
+                            "title": "Stüdyodan bir an 3",
+                            "caption": "Çalışmalarımıza yakından bir bakış.",
+                            "alt_text": "Northstar Studio proje görseli 3"
+                        }
+                    }
+                },
+                {
+                    "asset": "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg",
+                    "sort_order": 400,
+                    "title": null,
+                    "caption": null,
+                    "alt_text": null,
+                    "translations": {
+                        "en": {
+                            "title": "Studio moment 4",
+                            "caption": "A closer look at our work.",
+                            "alt_text": "Northstar Studio project image 4"
+                        },
+                        "tr": {
+                            "title": "Stüdyodan bir an 4",
+                            "caption": "Çalışmalarımıza yakından bir bakış.",
+                            "alt_text": "Northstar Studio proje görseli 4"
+                        }
+                    }
+                },
+                {
+                    "asset": "media/115-sample-theme-forgeworks-b2b-demo-2-pexels-8956445jpg.jpg",
+                    "sort_order": 500,
+                    "title": null,
+                    "caption": null,
+                    "alt_text": null,
+                    "translations": {
+                        "en": {
+                            "title": "Studio moment 5",
+                            "caption": "A closer look at our work.",
+                            "alt_text": "Northstar Studio project image 5"
+                        },
+                        "tr": {
+                            "title": "Stüdyodan bir an 5",
+                            "caption": "Çalışmalarımıza yakından bir bakış.",
+                            "alt_text": "Northstar Studio proje görseli 5"
+                        }
+                    }
+                },
+                {
+                    "asset": "media/116-sample-theme-forgeworks-b2b-demo-3-pexels-28929510jpg.jpg",
+                    "sort_order": 600,
+                    "title": null,
+                    "caption": null,
+                    "alt_text": null,
+                    "translations": {
+                        "en": {
+                            "title": "Studio moment 6",
+                            "caption": "A closer look at our work.",
+                            "alt_text": "Northstar Studio project image 6"
+                        },
+                        "tr": {
+                            "title": "Stüdyodan bir an 6",
+                            "caption": "Çalışmalarımıza yakından bir bakış.",
+                            "alt_text": "Northstar Studio proje görseli 6"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "videos": [
+        {
+            "source_type": "url",
+            "source_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "media_asset": null,
+            "presentation_mode": "inline",
+            "sort_order": 100,
+            "translations": {
+                "en": {
+                    "slug": "inside-the-studio",
+                    "title": "Inside the studio",
+                    "description": "A short look at the thinking, collaboration, and craft behind the work."
+                },
+                "tr": {
+                    "slug": "studyonun-icinde",
+                    "title": "Stüdyonun içinde",
+                    "description": "Çalışmanın arkasındaki düşünceye, iş birliğine ve emeğe kısa bir bakış."
+                }
+            }
+        },
+        {
+            "source_type": "url",
+            "source_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "media_asset": null,
+            "presentation_mode": "inline",
+            "sort_order": 200,
+            "translations": {
+                "en": {
+                    "slug": "how-we-build-design-systems",
+                    "title": "How we build design systems",
+                    "description": "A short look at the thinking, collaboration, and craft behind the work."
+                },
+                "tr": {
+                    "slug": "tasarim-sistemlerini-nasil-kuruyoruz",
+                    "title": "Tasarım sistemlerini nasıl kuruyoruz",
+                    "description": "Çalışmanın arkasındaki düşünceye, iş birliğine ve emeğe kısa bir bakış."
+                }
+            }
+        },
+        {
+            "source_type": "url",
+            "source_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "media_asset": null,
+            "presentation_mode": "inline",
+            "sort_order": 300,
+            "translations": {
+                "en": {
+                    "slug": "from-prototype-to-launch",
+                    "title": "From prototype to launch",
+                    "description": "A short look at the thinking, collaboration, and craft behind the work."
+                },
+                "tr": {
+                    "slug": "prototipten-yayina",
+                    "title": "Prototipten yayına",
+                    "description": "Çalışmanın arkasındaki düşünceye, iş birliğine ve emeğe kısa bir bakış."
+                }
+            }
+        }
+    ],
+    "blog_posts": [
+        {
+            "translations": {
+                "en": {
+                    "slug": "welcome-to-our-blog",
+                    "title": "Welcome to our blog",
+                    "summary": "News and practical guides from our team.",
+                    "document": {
+                        "type": "doc",
+                        "content": [
+                            {
+                                "type": "paragraph",
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": "Share your latest news and helpful articles here."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "tr": {
+                    "slug": "blogumuza-hos-geldiniz",
+                    "title": "Blogumuza hoş geldiniz",
+                    "summary": "Ekibimizden haberler ve uygulamaya dönük rehberler.",
+                    "document": {
+                        "type": "doc",
+                        "content": [
+                            {
+                                "type": "paragraph",
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": "Son haberlerinizi ve yararlı yazılarınızı burada paylaşın."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "menus": {
+        "footer": [
+            {
+                "type": "page",
+                "slug": "home",
+                "labels": {},
+                "slugs": {
+                    "en": "home",
+                    "tr": "ana-sayfa"
+                }
+            },
+            {
+                "type": "page",
+                "slug": "about",
+                "labels": {},
+                "slugs": {
+                    "en": "about",
+                    "tr": "hakkimizda"
+                }
+            },
+            {
+                "type": "page",
+                "slug": "contact",
+                "labels": {},
+                "slugs": {
+                    "en": "contact",
+                    "tr": "iletisim"
+                }
+            }
+        ],
+        "useful_links": [
+            {
+                "type": "page",
+                "slug": "working-together",
+                "labels": {},
+                "slugs": {
+                    "en": "working-together",
+                    "tr": "birlikte-calismak"
+                }
+            },
+            {
+                "type": "listing",
+                "listing": "blog",
+                "labels": {}
+            },
+            {
+                "type": "custom",
+                "url": "https://eyivo.com/developers/theme-api",
+                "labels": {
+                    "en": "Theme developer documentation",
+                    "tr": "Tema geliştirici belgeleri"
+                }
+            }
+        ]
+    }
 }

@@ -1,6 +1,41 @@
 <main id="main-content">
     {{ areas.intro | raw }}
     <section class="page-hero inner-hero contact-hero"><div class="shell hero-content"><nav class="breadcrumbs" aria-label="{{ 'Breadcrumb' | t }}"><a href="{{ routes.home }}">{{ 'Home' | t }}</a><span>/</span><span aria-current="page">{{ page.title }}</span></nav><p class="eyebrow">{{ page.title }}</p><h1>{{ page.title }}</h1><p class="hero-summary">{{ "Tell us what you are working on. You will hear from a real person who understands the work." | t }}</p></div></section>
-    <section class="section contact-section"><div class="shell contact-layout"><div class="contact-aside"><p class="eyebrow">{{ "Contact details" | t }}</p><h2>{{ "Start with a conversation." | t }}</h2>{% if company.phone %}<a href="tel:{{ company.phone }}"><span>{{ "Phone" | t }}</span><strong>{{ company.phone }}</strong></a>{% endif %}{% if company.email %}<a href="mailto:{{ company.email }}"><span>{{ "Email" | t }}</span><strong>{{ company.email }}</strong></a>{% endif %}{% if company.address %}<div><span>{{ "Visit" | t }}</span><strong>{{ company.address }}</strong></div>{% endif %}</div><form class="lead-form" method="post" action="{{ contact.action }}" data-fp-contact><input type="hidden" name="_token" value="{{ contact.csrf_token }}"><div class="form-heading"><span>01</span><h2>{{ "How can we help?" | t }}</h2></div>{% if contact.success %}<p class="form-success" role="status">{{ contact.success }}</p>{% endif %}{% if contact.has_errors %}<p class="form-error" role="alert">{{ "Please review the highlighted information." | t }}</p>{% endif %}<label>{{ "Name" | t }}<input name="name" value="{{ contact.old.name }}" required autocomplete="name"></label><label>{{ "Email" | t }}<input type="email" name="email" value="{{ contact.old.email }}" required autocomplete="email"></label><label>{{ "Phone" | t }} <small>{{ "Optional" | t }}</small><input name="phone" value="{{ contact.old.phone }}" autocomplete="tel"></label><label>{{ "Tell us about your project" | t }}<textarea name="message" rows="5" required>{{ contact.old.message }}</textarea></label><input class="honeypot" name="website" tabindex="-1" autocomplete="off"><button class="button" type="submit">{{ "Send enquiry" | t }} <span>↗</span></button>{% if contact.turnstile.enabled %}<div class="cf-turnstile" data-sitekey="{{ contact.turnstile.site_key }}"></div>{% endif %}</form></div></section>
+    <section class="section contact-section">
+        <div class="shell contact-layout">
+            <div class="contact-aside"><p class="eyebrow">{{ "Contact details" | t }}</p><h2>{{ "Start with a conversation." | t }}</h2>{% if company.phone %}<a href="tel:{{ company.phone }}"><span>{{ "Phone" | t }}</span><strong>{{ company.phone }}</strong></a>{% endif %}{% if company.email %}<a href="mailto:{{ company.email }}"><span>{{ "Email" | t }}</span><strong>{{ company.email }}</strong></a>{% endif %}{% if company.address %}<div><span>{{ "Visit" | t }}</span><strong>{{ company.address }}</strong></div>{% endif %}</div>
+            {% assign form = forms.contact %}
+{% if form.available %}
+<form class="lead-form" id="{{ form.placement }}" method="post" action="{{ form.action }}" data-eyivo-submission data-eyivo-form="{{ form.id }}">
+    <input type="hidden" name="_token" value="{{ form.csrf_token }}">
+    <input type="hidden" name="form_context" value="{{ form.context }}">
+    <div data-form-feedback role="status" aria-live="polite"></div>
+    <div class="form-heading"><span>01</span><h2>{{ "How can we help?" | t }}</h2></div>
+    {% if form.success %}<p class="form-success" role="status" data-form-success>{{ "Your request has been saved." | t }}</p>{% endif %}
+    {% if form.errors.size > 0 %}<div class="form-error" role="alert" data-form-errors>{% for error in form.errors %}{% for message in error.last %}<p>{{ message }}</p>{% endfor %}{% endfor %}</div>{% endif %}
+    {% for field in form.fields %}
+    <label for="{{ field.id }}">{{ field.label }}{% unless field.required %} <small>{{ "Optional" | t }}</small>{% endunless %}
+        {% if field.control == 'textarea' %}
+        <textarea id="{{ field.id }}" name="{{ field.name }}" rows="4" placeholder="{{ field.placeholder }}" maxlength="{{ field.max }}" {% if field.required %}required{% endif %} aria-describedby="{{ field.id }}-guidance {{ field.id }}-error">{{ field.value }}</textarea>
+        {% elsif field.control == 'select' %}
+        <select id="{{ field.id }}" name="{{ field.name }}" {% if field.required %}required{% endif %} aria-describedby="{{ field.id }}-guidance {{ field.id }}-error"><option value="">{{ field.help }}</option>{% for option in field.options %}<option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>{{ option.label }}</option>{% endfor %}</select>
+        {% elsif field.control == 'checkbox' %}
+        <input type="hidden" name="{{ field.name }}" value="0"><input type="checkbox" id="{{ field.id }}" name="{{ field.name }}" value="1" {% if field.value %}checked{% endif %} {% if field.required %}required{% endif %} aria-describedby="{{ field.id }}-guidance {{ field.id }}-error">
+        {% else %}
+        <input type="{{ field.control }}" id="{{ field.id }}" name="{{ field.name }}" value="{{ field.value }}" placeholder="{{ field.placeholder }}" {% if field.autocomplete %}autocomplete="{{ field.autocomplete }}"{% endif %} {% if field.control == 'number' %}{% if field.min %}min="{{ field.min }}"{% endif %}{% if field.max %} max="{{ field.max }}"{% endif %}{% else %}maxlength="{{ field.max }}"{% endif %} {% if field.required %}required{% endif %} aria-describedby="{{ field.id }}-guidance {{ field.id }}-error">
+        {% endif %}
+        <small id="{{ field.id }}-guidance">{% if field.help %}{{ field.help }}{% endif %}{% for message in field.errors %}<span class="form-error" data-field-error>{{ message }}</span>{% endfor %}</small>
+        <span class="form-error" id="{{ field.id }}-error" data-form-field-error="{{ field.key }}"></span>
+    </label>
+    {% endfor %}
+    <input class="honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    {{ form.verification_html | raw }}
+    <button class="button" type="submit">{{ "Send enquiry" | t }} <span>↗</span></button>
+</form>
+{% else %}
+<p class="form-error" role="status">{{ "This form is temporarily unavailable. Please contact us directly." | t }}</p>
+{% endif %}
+        </div>
+    </section>
     {{ areas.main | raw }}
 </main>

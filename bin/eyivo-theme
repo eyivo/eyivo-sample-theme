@@ -1,0 +1,348 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+class SampleMenuDefinition
+{
+    public static function errors(array $data): array
+    {
+        $menus = $data['menus'] ?? [];
+        if (! is_array($menus) || count($menus) > 20) {
+            return ['menus must be an object containing at most 20 additional menus'];
+        }
+        $errors = [];
+        foreach ($menus as $key => $definition) {
+            if (! is_string($key) || preg_match('/^[a-z][a-z0-9_]{0,63}$/D', $key) !== 1
+                || in_array($key, ['main', 'constructor', 'prototype', '__proto__'], true)
+                || ! is_array($definition) || array_diff(array_keys($definition), ['label', 'description', 'translations', 'initialize_from_main']) !== []
+                || ! is_string($definition['label'] ?? null) || trim($definition['label']) === ''
+                || ! is_string($definition['description'] ?? null) || trim($definition['description']) === '') {
+                $errors[] = 'Each additional menu needs a valid non-reserved key, label and description.';
+                continue;
+            }
+            if (isset($definition['initialize_from_main']) && ! is_bool($definition['initialize_from_main'])) {
+                $errors[] = 'initialize_from_main must be a boolean';
+            }
+            if (! is_array($definition['translations'] ?? [])) {
+                $errors[] = 'Menu translations must be an object.';
+                continue;
+            }
+            foreach ($definition['translations'] ?? [] as $locale => $translation) {
+                if (! in_array($locale, ['en','tr','de','fr','es','it','pt','ar','ru','zh','ja','ko','nl','pl'], true) || ! is_array($translation)
+                    || ! is_string($translation['label'] ?? null) || ! is_string($translation['description'] ?? null)) {
+                    $errors[] = 'Menu translations need a supported locale, label and description.';
+                }
+            }
+        }
+
+        return $errors;
+    }
+}
+
+$command = $argv[1] ?? 'help';
+$root = realpath($argv[2] ?? getcwd()) ?: ($argv[2] ?? getcwd());
+
+$fail = static function (string $message, int $code = 1): never {
+    fwrite(STDERR, "Error: {$message}\n");
+    exit($code);
+};
+
+$files = static function (string $directory): array {
+    $result = [];
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS));
+    foreach ($iterator as $file) {
+        $relative = str_replace('\\', '/', substr($file->getPathname(), strlen(rtrim($directory, '/\\')) + 1));
+        if ($file->isFile()
+            && ! str_starts_with($relative, '.git/')
+            && ! str_starts_with($relative, 'screenshots/')
+            && ! str_starts_with($relative, 'bin/')
+            && ! in_array($relative, ['.gitignore', 'LICENSE'], true)) {
+            $result[$relative] = $file->getPathname();
+        }
+    }
+    ksort($result, SORT_STRING);
+    return $result;
+};
+
+$validate = static function (string $directory) use ($fail, $files): array {
+    $manifestPath = $directory.'/theme.json';
+    if (! is_file($manifestPath)) {
+        $fail('theme.json was not found.');
+    }
+    try {
+        $manifest = json_decode((string) file_get_contents($manifestPath), true, flags: JSON_THROW_ON_ERROR);
+    } catch (JsonException $exception) {
+        $fail('theme.json is invalid: '.$exception->getMessage());
+    }
+    foreach (['key', 'name', 'version', 'eyivo_theme_api'] as $field) {
+        if (! is_string($manifest[$field] ?? null) || trim($manifest[$field]) === '') {
+            $fail("theme.json must provide {$field}.");
+        }
+    }
+    if (preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $manifest['key']) !== 1) {
+        $fail('The theme key may contain only lowercase letters, numbers, and hyphens.');
+    }
+    if (preg_match('/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/', $manifest['version']) !== 1) {
+        $fail('The theme version must use semantic versioning.');
+    }
+    if ($manifest['eyivo_theme_api'] !== '1.0') {
+        $fail('This CLI supports Eyivo Theme API 1.0.');
+    }
+    if (! is_array($manifest['forms'] ?? null) || ! isset($manifest['forms']['contact'])) {
+        $fail('theme.json must declare portable forms, including forms.contact.');
+    }
+    foreach ($manifest['forms'] as $alias => $binding) {
+        if (! is_string($alias) || preg_match('/^[a-z][a-z0-9_]{0,63}$/D', $alias) !== 1
+            || in_array($alias, ['constructor', 'prototype'], true) || ! is_array($binding)
+            || array_diff(array_keys($binding), ['plugin', 'type', 'schema_version', 'instance', 'settings']) !== []
+            || ! is_string($binding['plugin'] ?? null) || ! in_array($binding['plugin'], $manifest['plugins'] ?? [], true)
+            || ! is_string($binding['type'] ?? null) || preg_match('/^[a-z][a-z0-9_]{0,63}$/D', $binding['type']) !== 1
+            || ! is_int($binding['schema_version'] ?? null) || $binding['schema_version'] < 1 || ($binding['instance'] ?? null) !== 'default'
+            || ($alias === 'contact' && ($binding['plugin'] !== 'eyivo/contact' || $binding['type'] !== 'contact'))
+            || (isset($binding['settings']) && (! is_array($binding['settings']) || array_diff(array_keys($binding['settings']), ['presentation', 'additional_fields']) !== []))) {
+            $fail('Invalid portable form binding: '.$alias);
+        }
+    }
+    foreach (SampleMenuDefinition::errors($manifest) as $error) {
+        $fail($error);
+    }
+    $demoPath = $directory.'/demo.json';
+    if (! is_file($demoPath)) {
+        $fail('demo.json is required.');
+    }
+    try {
+        $demo = json_decode((string) file_get_contents($demoPath), true, flags: JSON_THROW_ON_ERROR);
+    } catch (JsonException $exception) {
+        $fail('demo.json is invalid: '.$exception->getMessage());
+    }
+    if (! is_array($demo)) {
+        $fail('demo.json must contain an object.');
+    }
+    foreach (ThemeDemoLocale::errors($demo, ['en', 'tr', 'de', 'fr', 'es', 'it', 'pt', 'nl', 'pl', 'ar', 'ru', 'ja', 'ko', 'zh']) as $error) {
+        $fail($error);
+    }
+    foreach ($demo['pages'] ?? [] as $page) {
+        foreach ($page['components'] ?? [] as $component) {
+            if (($component['component_type'] ?? null) === 'eyivo:lead_form') {
+                $binding = $component['data']['form_binding'] ?? null;
+                if (! is_string($binding) || ! isset($manifest['forms'][$binding]) || isset($component['data']['form_preset'])) {
+                    $fail('Demo lead forms must use a declared portable form_binding, not a site UUID or legacy form_preset.');
+                }
+            }
+        }
+    }
+    $preview = $manifest['preview'] ?? null;
+    if (! is_array($preview) || ($preview['data_source'] ?? null) !== 'demo_data') {
+        $fail('theme.json must declare preview.data_source as demo_data.');
+    }
+    $screenshots = $preview['screenshots'] ?? null;
+    if (! is_array($screenshots) || $screenshots === []) {
+        $fail('theme.json must declare at least one demo-data preview screenshot.');
+    }
+    foreach ($screenshots as $index => $screenshot) {
+        $sourcePath = is_array($screenshot) ? ($screenshot['source_path'] ?? null) : null;
+        $targetPath = is_array($screenshot) ? ($screenshot['path'] ?? null) : null;
+        if (! is_string($sourcePath) || ! is_string($targetPath)
+            || preg_match('#^screenshots/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $sourcePath) !== 1
+            || preg_match('#^preview/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $targetPath) !== 1
+            || ! is_file($directory.'/'.$sourcePath)) {
+            $fail("theme.json preview.screenshots.{$index} must reference an existing screenshot source and preview image path.");
+        }
+        if (! is_string($screenshot['page'] ?? null) || trim($screenshot['page']) === ''
+            || ! in_array($screenshot['viewport'] ?? null, ['desktop', 'mobile'], true)) {
+            $fail("theme.json preview.screenshots.{$index} must declare a page and desktop or mobile viewport.");
+        }
+    }
+    foreach (['home', 'page', 'contact', 'products', 'product', 'gallery', 'videos'] as $type) {
+        if (! isset($manifest['page_types'][$type]) || ! is_file($directory.'/page-types/'.$type.'.liquid')) {
+            $fail("The {$type} page type is required.");
+        }
+    }
+    // Older v1 themes inherit blog templates from Eyivo's core theme.
+    foreach (['blog', 'blog_category', 'blog_post'] as $type) {
+        if (isset($manifest['page_types'][$type]) && ! is_file($directory.'/page-types/'.$type.'.liquid')) {
+            $fail("The declared {$type} page type must provide its Liquid template.");
+        }
+    }
+    if (! is_file($directory.'/layouts/default.liquid')) {
+        $fail('layouts/default.liquid is required.');
+    }
+    foreach ($files($directory) as $relative => $absolute) {
+        $extension = strtolower(pathinfo($relative, PATHINFO_EXTENSION));
+        if (in_array($extension, ['js', 'php', 'phtml', 'phar', 'zip', 'tar', 'gz'], true)) {
+            $fail("{$relative} is not allowed by the Theme API v1 policy.");
+        }
+        if ($extension === 'liquid' && preg_match('/<\s*script\b|<\?(?:php|=)?|@php|\{!!/i', (string) file_get_contents($absolute)) === 1) {
+            $fail("{$relative} contains forbidden executable markup.");
+        }
+        if ($extension === 'liquid' && preg_match('/\bcontact\.(?:action|csrf_token|old|success)|\bform_preset\b/', (string) file_get_contents($absolute)) === 1) {
+            $fail("{$relative} uses the retired contact form contract; use forms bindings and schema fields.");
+        }
+    }
+    $menuSource = '';
+    foreach ($files($directory) as $relative => $absolute) {
+        if (str_ends_with($relative, '.liquid')) {
+            $menuSource .= file_get_contents($absolute);
+        }
+    }
+    foreach (array_keys($manifest['menus'] ?? []) as $key) {
+        if (! str_contains($menuSource, 'navigation.'.$key) && ! str_contains($menuSource, "navigation['".$key."']")) {
+            $fail("Declared menu {$key} must be rendered by the theme.");
+        }
+    }
+    return $manifest;
+};
+
+if ($command === 'init') {
+    $target = $argv[2] ?? null;
+    if (! is_string($target) || trim($target) === '') {
+        $fail('Provide a new destination directory.');
+    }
+    if (file_exists($target)) {
+        $fail('The destination already exists.');
+    }
+    if (! mkdir($target, 0755, true) && ! is_dir($target)) {
+        $fail('Unable to create the destination.');
+    }
+    $source = dirname(__DIR__);
+    foreach ($files($source) as $relative => $absolute) {
+        if (strtolower(pathinfo($relative, PATHINFO_EXTENSION)) === 'zip') {
+            continue;
+        }
+        $destination = rtrim($target, '/\\').DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $relative);
+        if (! is_dir(dirname($destination)) && ! mkdir(dirname($destination), 0755, true) && ! is_dir(dirname($destination))) {
+            $fail("Unable to create the directory for {$relative}.");
+        }
+        if (! copy($absolute, $destination)) {
+            $fail("Unable to copy {$relative}.");
+        }
+    }
+    $manifest = $validate($source);
+    foreach ($manifest['preview']['screenshots'] as $screenshot) {
+        $sourcePath = $screenshot['source_path'];
+        $destination = rtrim($target, '/\\').DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $sourcePath);
+        if (! is_dir(dirname($destination)) && ! mkdir(dirname($destination), 0755, true) && ! is_dir(dirname($destination))) {
+            $fail("Unable to create the directory for {$sourcePath}.");
+        }
+        if (! copy($source.'/'.$sourcePath, $destination)) {
+            $fail("Unable to copy {$sourcePath}.");
+        }
+    }
+    fwrite(STDOUT, "Created an Eyivo Theme API v1 scaffold at {$target}\nEdit theme.json, then run validate and pack.\n");
+    exit(0);
+}
+
+if ($command === 'validate') {
+    $manifest = $validate($root);
+    fwrite(STDOUT, "Valid Theme API {$manifest['eyivo_theme_api']} package: {$manifest['name']} {$manifest['version']}\n");
+    exit(0);
+}
+
+if ($command === 'pack') {
+    $manifest = $validate($root);
+    if (! class_exists(ZipArchive::class)) {
+        $fail('PHP zip support is required to pack a theme.');
+    }
+    $target = $argv[3] ?? dirname($root).'/'.$manifest['key'].'-'.$manifest['version'].'.zip';
+    $zip = new ZipArchive;
+    if ($zip->open($target, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+        $fail("Unable to create {$target}.");
+    }
+    foreach ($files($root) as $relative => $absolute) {
+        $zip->addFile($absolute, $relative);
+        if (method_exists($zip, 'setMtimeName')) {
+            $zip->setMtimeName($relative, 946684800);
+        }
+    }
+    foreach ($manifest['preview']['screenshots'] as $screenshot) {
+        $zip->addFile($root.'/'.$screenshot['source_path'], $screenshot['path']);
+        if (method_exists($zip, 'setMtimeName')) {
+            $zip->setMtimeName($screenshot['path'], 946684800);
+        }
+    }
+    $zip->close();
+    fwrite(STDOUT, "Created {$target}\n");
+    exit(0);
+}
+
+fwrite(STDOUT, <<<'HELP'
+Eyivo Theme API v1 helper
+
+Usage:
+  php bin/eyivo-theme init <new-directory>
+  php bin/eyivo-theme validate [theme-directory]
+  php bin/eyivo-theme pack [theme-directory] [output.zip]
+
+The app panel remains the authority: upload the generated ZIP under Custom Themes,
+preview it against an owned site, then select it as a Branding draft and publish.
+HELP
+);
+fwrite(STDOUT, "\n");
+
+/** Mirrors the platform demo locale validation contract. */
+final class ThemeDemoLocale
+{
+    public static function errors(array $demo, array $locales): array
+    {
+        $errors = [];
+        if (($demo['default_locale'] ?? 'en') !== 'en') {
+            $errors[] = 'demo.default_locale must be en.';
+        }
+        $check = function (array $record, string $path, array $legacy = []) use (&$errors, $locales): void {
+            $translations = $record['translations'] ?? [];
+            if (! is_array($translations) || ($translations !== [] && array_is_list($translations))) {
+                $errors[] = $path.'.translations must be a locale-keyed object.';
+                return;
+            }
+            if ($translations !== [] && ! isset($translations['en']) && $legacy === []) {
+                $errors[] = $path.'.translations.en is required; other demo languages are optional.';
+            }
+            foreach ($translations as $locale => $values) {
+                if (! in_array($locale, $locales, true) || ! is_array($values) || ($values !== [] && array_is_list($values))) {
+                    $errors[] = $path.'.translations.'.$locale.' must be an object for a supported locale.';
+                }
+            }
+        };
+        foreach (['pages', 'catalog', 'galleries', 'videos', 'blog_posts'] as $resource) {
+            $records = $demo[$resource] ?? [];
+            if (! is_array($records) || ! array_is_list($records)) {
+                $errors[] = 'demo.'.$resource.' must be a list.';
+                continue;
+            }
+            foreach ($records as $index => $record) {
+                if (! is_array($record)) {
+                    $errors[] = 'demo.'.$resource.'.'.$index.' must be an object.';
+                    continue;
+                }
+                $legacy = array_intersect_key($record, array_flip(['slug', 'title']));
+                $path = 'demo.'.$resource.'.'.$index;
+                $check($record, $path, $legacy);
+                $english = array_replace($legacy, is_array($record['translations']['en'] ?? null) ? $record['translations']['en'] : []);
+                if (! is_string($english['slug'] ?? null) || $english['slug'] === '' || ! is_string($english['title'] ?? null) || $english['title'] === '') {
+                    $errors[] = $path.' requires an English slug and title.';
+                }
+                foreach (is_array($record['components'] ?? null) ? $record['components'] : [] as $i => $component) {
+                    if (is_array($component)) {
+                        $check($component, $path.'.components.'.$i, is_array($component['translation'] ?? null) ? $component['translation'] : []);
+                    }
+                }
+                foreach (is_array($record['items'] ?? null) ? $record['items'] : [] as $i => $item) {
+                    if (is_array($item)) {
+                        $check($item, $path.'.items.'.$i, array_intersect_key($item, array_flip(['title', 'caption', 'alt_text'])));
+                    }
+                }
+            }
+        }
+        foreach (['company', 'theme_settings'] as $section) {
+            if (is_array($demo[$section] ?? null)) {
+                $check($demo[$section], 'demo.'.$section, $section === 'company'
+                    ? array_intersect_key($demo[$section], array_flip(['display_name', 'description', 'address', 'legal_name']))
+                    : (is_array($demo[$section]['settings'] ?? null) ? $demo[$section]['settings'] : []));
+            }
+        }
+
+        return $errors;
+    }
+
+}

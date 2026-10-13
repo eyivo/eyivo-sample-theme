@@ -8,19 +8,19 @@ This sample is deliberately broad: it demonstrates the contracts a production Ey
 | --- | --- |
 | Home | Hero, editable areas, native catalog/gallery previews, theme-owned component |
 | Standard page | Hero media, body content, breadcrumbs, flexible component areas |
-| Contact | Company details, contact form, CSRF, validation states, honeypot, Turnstile hook |
-| Catalog | Search/filter UI, responsive cards, localized detail links |
+| Contact | Company details, contact form, localized input guidance, CSRF, validation states, honeypot, required Human Verification placement |
+| Catalog | Responsive cards, entry count, localized detail links |
 | Catalog item | Cover media, body content, enquiry CTA, product component area |
 | Gallery | Grid presentation modes, localized captions and alt text, direct CTA component |
 | Videos | Uploaded media or external URLs, presentation cards, direct CTA component |
 
 ## Components
 
-The manifest exposes all 29 Theme API `1.0` core components in appropriate page areas:
+The manifest exposes all 30 Theme API `1.0` core components in appropriate page areas:
 
 - `announcement`, `article_list`, `business_hours`, `collection_grid`
 - `contact_actions`, `contact_details`, `credentials`, `cta`
-- `download_list`, `faq`, `feature_grid`, `hero`
+- `download_list`, `event_list`, `faq`, `feature_grid`, `hero`
 - `image_slider`, `image_text`, `lead_form`, `location_map`
 - `logo_cloud`, `media_gallery`, `price_offer`, `product_specs`
 - `project_grid`, `rich_text`, `search_filter`, `service_grid`
@@ -42,16 +42,21 @@ The included `theme:capability_note` additionally demonstrates:
 - Locale-aware navigation, URLs, language switcher, and translation filter
 - Right-to-left layout safeguards
 - Responsive desktop and mobile navigation
-- Quick-navigation dialog and client-side filtering
-- Optional light/dark color mode with saved preference
-- Announcement bar, floating contact actions, and back-to-top control
-- Analytics consent for GA4 and Plausible integrations
-- Contact form success/error states and optional Cloudflare Turnstile
+- Native expandable quick navigation, also available on mobile without custom JavaScript
+- Optional light/dark colors following the visitor's system preference
+- Announcement bar, floating contact actions, and a native back-to-top link
+- Portable form bindings to persistent site form instances, independent of theme changes
+- Plugin-owned typed fields with localized guidance, placement-specific feedback and required Human Verification
+- Trusted `form.verification_html` placement inside the form, with platform-issued submission context
+- Shared inbox and mandatory plugin submission list/detail pages displaying the same saved records
+- Platform-managed verification scripts/styles, challenge refresh and server-side proof validation
 - Semantic landmarks, skip link, focus states, alt text, and reduced-motion handling
 - Draft/publish and per-locale publication compatibility for pages and resources
 - Public catalog, gallery, video, company, and theme-setting data supplied by the runtime
 
 ## Demo shown in screenshots
+
+The declared captures were refreshed from this version’s demo rendered by Eyivo, including the page-body and desktop/mobile menu examples. The uploadable sample uses native expandable navigation and system color preference. Check the current verification widget there with plugin services configured; the no-script theme preview cannot complete a challenge.
 
 The repository screenshots were captured from a seeded local Eyivo tenant with:
 
@@ -60,4 +65,30 @@ The repository screenshots were captured from a seeded local Eyivo tenant with:
 - One published six-image gallery
 - Three published video entries
 - About and contact pages
-- Company profile, social links, theme settings, consent configuration, and responsive navigation
+- Company profile, social links, theme settings, and responsive navigation
+
+## Blog support
+
+Free blogs support flat categories, multiple categories per post, cover and inline images, translated rich text, draft previews, and scheduled publication. Use `blog`, `blog_category`, and `blog_post` page types with the `blog` Liquid object. Only server-produced `blog.post.body_html` should use `raw`. Omitted blog types inherit core templates inside the active layout. `eyivo_head` supplies responsive blog and bounded card-image styles. Demo blog posts are imported as drafts.
+
+## Menus and rich text
+
+- Automatic Main navigation remains controlled by existing page and listing rules.
+- Independent Footer and Useful links locations demonstrate manifest registration.
+- Multi-menu content assignments and independent menu draft publication.
+- Localized labels and URLs, unpublished-target handling, and theme-switch retention.
+- Explicit page-body support and an editable rich-text theme component.
+- Safe platform-rendered formatting and stable page-picker links.
+- RTL-safe hidden form honeypot without off-screen overflow.
+- Blog listing, category, and article templates are included.
+
+The static design class stays stable when the platform assigns a custom theme key.
+
+## Demo localization
+
+- English required as the base (`default_locale: en`); all other site languages optional.
+- English and Turkish examples for company, theme settings, pages, components, products, galleries and image descriptions, videos, and blog posts.
+- Selected native language on creation, with English fallback for each missing field.
+- Localized slugs, rich-text links, and portable menu destinations without tenant IDs.
+- Packaging checks reject a non-English default, missing English content, or invalid locale objects.
+- English screenshots remain the baseline preview; additional demo translations do not change them.

@@ -1,7 +1,7 @@
 <section class="component capability-note capability-note-{{ component.variant | default: 'default' }}">
     <div class="shell capability-note-grid">
         <p class="eyebrow"><span aria-hidden="true">✦</span>{{ component.data.label | t }}</p>
-        <div><h2>{{ component.data.heading | t }}</h2><p>{{ component.data.text | t }}</p></div>
-        {% if component.data.link_url %}<a class="text-link" href="{{ component.data.link_url }}">{{ component.data.link_label | t }} <span aria-hidden="true">↗</span></a>{% endif %}
+        <div><h2>{{ component.data.heading | t }}</h2><div class="prose capability-note-body">{{ component.data.text }}</div></div>
+        {% if component.data.link_url %}<a class="text-link" href="{{ component.data.link_url | localized_url }}">{{ component.data.link_label | t }} <span aria-hidden="true">↗</span></a>{% endif %}
     </div>
 </section>

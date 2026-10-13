@@ -1,59 +1,174 @@
 {
+    "key": "eyivo-sample-theme",
     "name": "Eyivo Sample Theme",
-    "version": "1.0.0",
+    "version": "1.3.1",
     "eyivo_theme_api": "1.0",
+    "preview": {
+        "data_source": "demo_data",
+        "screenshots": [
+            {
+                "path": "preview/home-desktop.png",
+                "source_path": "screenshots/home-desktop.png",
+                "page": "home",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/home-mobile.png",
+                "source_path": "screenshots/home-mobile.png",
+                "page": "home",
+                "viewport": "mobile"
+            },
+            {
+                "path": "preview/catalog-desktop.png",
+                "source_path": "screenshots/catalog-desktop.png",
+                "page": "products",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/catalog-mobile.png",
+                "source_path": "screenshots/catalog-mobile.png",
+                "page": "products",
+                "viewport": "mobile"
+            },
+            {
+                "path": "preview/catalog-detail-desktop.png",
+                "source_path": "screenshots/catalog-detail-desktop.png",
+                "page": "product",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/gallery-desktop.png",
+                "source_path": "screenshots/gallery-desktop.png",
+                "page": "gallery",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/gallery-mobile.png",
+                "source_path": "screenshots/gallery-mobile.png",
+                "page": "gallery",
+                "viewport": "mobile"
+            },
+            {
+                "path": "preview/contact-desktop.png",
+                "source_path": "screenshots/contact-desktop.png",
+                "page": "contact",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/contact-mobile.png",
+                "source_path": "screenshots/contact-mobile.png",
+                "page": "contact",
+                "viewport": "mobile"
+            },
+            {
+                "path": "preview/about-desktop.png",
+                "source_path": "screenshots/about-desktop.png",
+                "page": "page",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/videos-desktop.png",
+                "source_path": "screenshots/videos-desktop.png",
+                "page": "videos",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/page-body-desktop.png",
+                "source_path": "screenshots/page-body-desktop.png",
+                "page": "page",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/footer-desktop.png",
+                "source_path": "screenshots/footer-desktop.png",
+                "page": "home",
+                "viewport": "desktop"
+            },
+            {
+                "path": "preview/footer-mobile.png",
+                "source_path": "screenshots/footer-mobile.png",
+                "page": "home",
+                "viewport": "mobile"
+            },
+            {
+                "path": "preview/navigation-mobile.png",
+                "source_path": "screenshots/navigation-mobile.png",
+                "page": "home",
+                "viewport": "mobile"
+            }
+        ]
+    },
+    "capabilities": {
+        "custom_javascript": false,
+        "external_assets": false
+    },
     "settings": {
         "accent_color": {
-            "type": "color"
+            "type": "color",
+            "help": "Choose a color for this part of the theme."
         },
         "secondary_color": {
-            "type": "color"
+            "type": "color",
+            "help": "Choose a color for this part of the theme."
         },
         "catalog_label": {
-            "type": "text"
+            "type": "text",
+            "placeholder": "e.g. Services"
         },
         "status_label": {
-            "type": "text"
+            "type": "text",
+            "placeholder": "e.g. Available for enquiries"
         },
         "showcase_heading": {
-            "type": "text"
+            "type": "text",
+            "placeholder": "Describe showcase heading."
         },
         "showcase_text": {
-            "type": "textarea"
+            "type": "textarea",
+            "placeholder": "Describe showcase text."
         },
         "header_cta_label": {
-            "type": "text"
+            "type": "text",
+            "placeholder": "Describe header cta label."
         },
         "header_cta_url": {
-            "type": "url"
+            "type": "url",
+            "placeholder": "/contact"
         },
         "announcement_text": {
-            "type": "text"
+            "type": "text",
+            "placeholder": "Describe announcement text."
         },
         "announcement_link_label": {
-            "type": "text"
+            "type": "text",
+            "placeholder": "Describe announcement link label."
         },
         "announcement_link_url": {
-            "type": "url"
+            "type": "url",
+            "placeholder": "/catalog"
         },
         "footer_tagline": {
-            "type": "textarea"
+            "type": "textarea",
+            "placeholder": "Describe footer tagline."
         },
         "whatsapp_url": {
-            "type": "url"
+            "type": "url",
+            "placeholder": "https://wa.me/your-number"
         },
         "show_back_to_top": {
-            "type": "boolean"
+            "type": "boolean",
+            "help": "Choose whether to display this option."
         },
         "show_color_mode": {
-            "type": "boolean"
+            "type": "boolean",
+            "help": "Choose whether to display this option."
         }
     },
     "defaults": {
         "catalog_label": "Services",
         "status_label": "Open for new projects",
         "showcase_heading": "One theme. Every essential building block.",
-        "showcase_text": "This public sample demonstrates localized layouts, editable settings, reusable components, catalogs, galleries, video, contact forms, analytics consent, responsive navigation, and accessible interaction patterns.",
+        "showcase_text": "This public sample demonstrates localized layouts, editable settings, reusable components, catalogs, galleries, video, contact forms, responsive navigation, and accessible interaction patterns.",
         "header_cta_label": "Contact us",
         "header_cta_url": "/contact",
         "footer_tagline": "A flexible starting point for your next Eyivo theme.",
@@ -90,6 +205,7 @@
                         "eyivo:price_offer",
                         "eyivo:announcement",
                         "eyivo:article_list",
+                        "eyivo:event_list",
                         "eyivo:faq",
                         "eyivo:testimonials",
                         "eyivo:logo_cloud",
@@ -113,7 +229,8 @@
                     ],
                     "min": 0
                 }
-            }
+            },
+            "uses_body": false
         },
         "page": {
             "areas": {
@@ -134,6 +251,7 @@
                         "eyivo:media_gallery",
                         "eyivo:video",
                         "eyivo:article_list",
+                        "eyivo:event_list",
                         "eyivo:faq",
                         "eyivo:testimonials",
                         "eyivo:logo_cloud",
@@ -155,7 +273,8 @@
                     ],
                     "min": 0
                 }
-            }
+            },
+            "uses_body": true
         },
         "gallery": {
             "areas": {
@@ -175,7 +294,8 @@
                     ],
                     "min": 0
                 }
-            }
+            },
+            "uses_body": false
         },
         "contact": {
             "areas": {
@@ -197,7 +317,8 @@
                     ],
                     "min": 0
                 }
-            }
+            },
+            "uses_body": false
         },
         "products": {
             "areas": {
@@ -217,7 +338,8 @@
                     ],
                     "min": 0
                 }
-            }
+            },
+            "uses_body": false
         },
         "product": {
             "areas": {
@@ -240,7 +362,8 @@
                     ],
                     "min": 0
                 }
-            }
+            },
+            "uses_body": true
         },
         "videos": {
             "areas": {
@@ -258,7 +381,20 @@
                     ],
                     "min": 0
                 }
-            }
+            },
+            "uses_body": false
+        },
+        "blog": {
+            "uses_body": false,
+            "areas": {}
+        },
+        "blog_category": {
+            "uses_body": false,
+            "areas": {}
+        },
+        "blog_post": {
+            "uses_body": false,
+            "areas": {}
         }
     },
     "components": {
@@ -269,23 +405,28 @@
             ],
             "schema": {
                 "label": {
+                    "placeholder": "e.g. Theme feature",
                     "type": "text",
                     "translatable": true
                 },
                 "heading": {
+                    "placeholder": "e.g. Build with reusable sections",
                     "type": "text",
                     "required": true,
                     "translatable": true
                 },
                 "text": {
-                    "type": "textarea",
-                    "translatable": true
+                    "type": "richtext",
+                    "translatable": true,
+                    "help": "Describe this capability with paragraphs, lists, images, and links to published pages."
                 },
                 "link_label": {
+                    "placeholder": "e.g. Explore more",
                     "type": "text",
                     "translatable": true
                 },
                 "link_url": {
+                    "placeholder": "https://example.com/about",
                     "type": "url"
                 }
             },
@@ -294,6 +435,47 @@
                 "heading": "Build a site from reusable content blocks.",
                 "text": "This is a theme-owned component. It can be added, translated, reordered, drafted, and published like an Eyivo core component.",
                 "link_label": "Explore"
+            }
+        }
+    },
+    "plugins": [
+        "eyivo/contact",
+        "eyivo/quote-request"
+    ],
+    "forms": {
+        "contact": {
+            "plugin": "eyivo/contact",
+            "type": "contact",
+            "schema_version": 1,
+            "instance": "default"
+        },
+        "quote_request": {
+            "plugin": "eyivo/quote-request",
+            "type": "quote_request",
+            "schema_version": 1,
+            "instance": "default"
+        }
+    },
+    "menus": {
+        "footer": {
+            "label": "Footer links",
+            "description": "Links displayed in the footer on every page.",
+            "initialize_from_main": true,
+            "translations": {
+                "tr": {
+                    "label": "Alt bilgi bağlantıları",
+                    "description": "Her sayfanın alt bilgisinde gösterilen bağlantılar."
+                }
+            }
+        },
+        "useful_links": {
+            "label": "Useful links",
+            "description": "A separate list of helpful links in the footer.",
+            "translations": {
+                "tr": {
+                    "label": "Yararlı bağlantılar",
+                    "description": "Alt bilgide ayrı gösterilen yararlı bağlantılar."
+                }
             }
         }
     }
