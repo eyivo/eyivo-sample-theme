@@ -28,7 +28,8 @@
                 <span class="brand-name">{{ company.name }}</span>
             </a>
             <nav class="desktop-nav" aria-label="{{ 'Primary navigation' | t }}">
-                {% for item in navigation.main %}<a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{% if item.kind == 'catalog' %}{{ theme.settings.catalog_label }}{% else %}{{ item.label }}{% endif %}</a>{% endfor %}
+                {% for item in navigation.main %}{% if forloop.index <= 5 %}<a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{% if item.kind == 'catalog' %}{{ theme.settings.catalog_label }}{% else %}{{ item.label }}{% endif %}</a>{% endif %}{% endfor %}
+                {% if navigation.main.size > 5 %}<details class="more-menu"><summary>{{ 'More' | t }}<svg class="more-menu-icon" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="m3 4.5 3 3 3-3"/></svg></summary><div>{% for item in navigation.main %}{% if forloop.index > 5 %}<a href="{{ item.url }}"{% if item.active %} aria-current="page"{% endif %}>{% if item.kind == 'catalog' %}{{ theme.settings.catalog_label }}{% else %}{{ item.label }}{% endif %}</a>{% endif %}{% endfor %}</div></details>{% endif %}
             </nav>
             <div class="header-actions">
                 <a class="button button-small header-cta" href="{{ theme.settings.header_cta_url | localized_url }}">{{ theme.settings.header_cta_label }}</a>
@@ -53,7 +54,6 @@
 
     <footer class="site-footer theme-footer sample-footer">
         <div class="shell sample-footer-callout">
-            <span>01—07</span>
             <div><p>{{ theme.settings.catalog_label }}</p><h2>{{ theme.settings.footer_tagline }}</h2></div>
             <a class="button button-light" href="{{ theme.settings.header_cta_url | localized_url }}">{{ theme.settings.header_cta_label }} <span aria-hidden="true">↗</span></a>
         </div>

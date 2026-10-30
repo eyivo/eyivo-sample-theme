@@ -1,7 +1,7 @@
 {
     "key": "eyivo-sample-theme",
     "name": "Eyivo Sample Theme",
-    "version": "1.3.1",
+    "version": "1.3.3",
     "eyivo_theme_api": "1.0",
     "preview": {
         "data_source": "demo_data",
@@ -440,7 +440,12 @@
     },
     "plugins": [
         "eyivo/contact",
-        "eyivo/quote-request"
+        "eyivo/quote-request",
+        "eyivo/product-inquiry",
+        "eyivo/appointment-request",
+        "eyivo/course-application",
+        "eyivo/reservation-request",
+        "eyivo/property-inquiry"
     ],
     "forms": {
         "contact": {
@@ -452,6 +457,36 @@
         "quote_request": {
             "plugin": "eyivo/quote-request",
             "type": "quote_request",
+            "schema_version": 1,
+            "instance": "default"
+        },
+        "product_inquiry": {
+            "plugin": "eyivo/product-inquiry",
+            "type": "product_inquiry",
+            "schema_version": 1,
+            "instance": "default"
+        },
+        "appointment": {
+            "plugin": "eyivo/appointment-request",
+            "type": "appointment",
+            "schema_version": 1,
+            "instance": "default"
+        },
+        "course_application": {
+            "plugin": "eyivo/course-application",
+            "type": "course_application",
+            "schema_version": 1,
+            "instance": "default"
+        },
+        "reservation": {
+            "plugin": "eyivo/reservation-request",
+            "type": "reservation",
+            "schema_version": 1,
+            "instance": "default"
+        },
+        "property_inquiry": {
+            "plugin": "eyivo/property-inquiry",
+            "type": "property_inquiry",
             "schema_version": 1,
             "instance": "default"
         }

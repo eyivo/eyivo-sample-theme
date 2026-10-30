@@ -106,7 +106,7 @@
             "sort_order": 100,
             "navigation_visible": true,
             "settings": null,
-            "hero_asset": null,
+            "hero_asset": "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg",
             "translations": {
                 "en": {
                     "slug": "home",
@@ -619,6 +619,172 @@
                             "link_label": "Uzmanlık alanlarını keşfedin"
                         }
                     }
+                },
+                {
+                    "component_type": "eyivo:announcement",
+                    "area": "main",
+                    "position": 1000,
+                    "variant": null,
+                    "data": {
+                        "button_url": "/contact"
+                    },
+                    "translations": {
+                        "en": {
+                            "label": "Now booking",
+                            "heading": "A limited number of new projects are opening this quarter.",
+                            "body": "Speak directly with a senior specialist about scope, timing, and fit.",
+                            "button_label": "Check availability"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:collection_grid",
+                    "area": "main",
+                    "position": 1100,
+                    "variant": null,
+                    "data": {
+                        "button_url": "/contact"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Explore the range",
+                            "heading": "Selected for performance and fit.",
+                            "intro": "Compare the essentials, then speak with a specialist for a tailored recommendation.",
+                            "button_label": "View the full range"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:image_slider",
+                    "area": "main",
+                    "position": 1200,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "heading": "Inside the experience",
+                            "items": [
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "alt": "SFN Creative view 1",
+                                    "title": "Campaigns",
+                                    "caption": "Designed around people and place."
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "alt": "SFN Creative view 2",
+                                    "title": "Art Direction",
+                                    "caption": "Designed around people and place."
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "alt": "SFN Creative view 3",
+                                    "title": "Production",
+                                    "caption": "Designed around people and place."
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:location_map",
+                    "area": "main",
+                    "position": 1300,
+                    "variant": null,
+                    "data": {
+                        "map_url": "https://maps.google.com/?q=London",
+                        "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "In context",
+                            "heading": "Connected to the places that matter.",
+                            "address": "24 Meridian Street, London, EC1V 2NX",
+                            "image_alt": "Location and surrounding area"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:price_offer",
+                    "area": "main",
+                    "position": 1400,
+                    "variant": null,
+                    "data": {
+                        "button_url": "/contact"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "A clear starting point",
+                            "heading": "A proposal shaped for you",
+                            "price": "By proposal",
+                            "period": "after a conversation",
+                            "features": [
+                                {
+                                    "label": "Hair Studio"
+                                },
+                                {
+                                    "label": "Skin Rituals"
+                                },
+                                {
+                                    "label": "Wellness Plans"
+                                }
+                            ],
+                            "button_label": "Discuss your brief"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:product_specs",
+                    "area": "main",
+                    "position": 1500,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "heading": "Performance at a glance",
+                            "items": [
+                                {
+                                    "label": "Configuration",
+                                    "value": "Built to requirement"
+                                },
+                                {
+                                    "label": "Quality control",
+                                    "value": "Documented end to end"
+                                },
+                                {
+                                    "label": "Support",
+                                    "value": "Responsive lifecycle care"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:search_filter",
+                    "area": "main",
+                    "position": 1600,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "heading": "Find the right fit, faster.",
+                            "placeholder": "Search the collection",
+                            "categories": [
+                                {
+                                    "label": "New Arrivals",
+                                    "value": "new-arrivals"
+                                },
+                                {
+                                    "label": "Footwear",
+                                    "value": "footwear"
+                                },
+                                {
+                                    "label": "Studio Essentials",
+                                    "value": "studio-essentials"
+                                }
+                            ]
+                        }
+                    }
                 }
             ]
         },
@@ -627,7 +793,7 @@
             "sort_order": 200,
             "navigation_visible": true,
             "settings": null,
-            "hero_asset": null,
+            "hero_asset": "media/115-sample-theme-forgeworks-b2b-demo-2-pexels-8956445jpg.jpg",
             "translations": {
                 "en": {
                     "slug": "about",
@@ -649,22 +815,25 @@
                     "component_type": "eyivo:hero",
                     "area": "hero",
                     "position": 100,
-                    "variant": null,
+                    "variant": "immersive",
                     "data": {
-                        "primary_url": "https://example.test/contact"
+                        "primary_url": "/contact",
+                        "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg"
                     },
                     "translations": {
                         "en": {
                             "eyebrow": "Demo website",
                             "heading": "Northstar Studio",
                             "summary": "Strategy, design, and digital experiences for ambitious organizations.",
-                            "primary_label": "Contact us"
+                            "primary_label": "Contact us",
+                            "image_alt": "Designers reviewing sketches at a shared studio table"
                         },
                         "tr": {
                             "eyebrow": "Demo web sitesi",
                             "heading": "Northstar Studio",
                             "summary": "Hedefleri büyük kuruluşlar için strateji, tasarım ve dijital deneyimler.",
-                            "primary_label": "Bize ulaşın"
+                            "primary_label": "Bize ulaşın",
+                            "image_alt": "Tasarımcılar ortak stüdyo masasında eskizleri inceliyor"
                         }
                     }
                 },
@@ -694,7 +863,7 @@
             "sort_order": 300,
             "navigation_visible": true,
             "settings": null,
-            "hero_asset": null,
+            "hero_asset": "media/116-sample-theme-forgeworks-b2b-demo-3-pexels-28929510jpg.jpg",
             "translations": {
                 "en": {
                     "slug": "contact",
@@ -716,22 +885,25 @@
                     "component_type": "eyivo:hero",
                     "area": "intro",
                     "position": 100,
-                    "variant": null,
+                    "variant": "immersive",
                     "data": {
-                        "primary_url": "https://example.test/contact"
+                        "primary_url": "/contact",
+                        "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-3-pexels-12899168-7ac8550a.jpg"
                     },
                     "translations": {
                         "en": {
                             "eyebrow": "Demo website",
                             "heading": "Northstar Studio",
                             "summary": "Strategy, design, and digital experiences for ambitious organizations.",
-                            "primary_label": "Contact us"
+                            "primary_label": "Contact us",
+                            "image_alt": "A bright studio workspace ready for the next project"
                         },
                         "tr": {
                             "eyebrow": "Demo web sitesi",
                             "heading": "Northstar Studio",
                             "summary": "Hedefleri büyük kuruluşlar için strateji, tasarım ve dijital deneyimler.",
-                            "primary_label": "Bize ulaşın"
+                            "primary_label": "Bize ulaşın",
+                            "image_alt": "Yeni projeye hazır, aydınlık bir stüdyo çalışma alanı"
                         }
                     }
                 },
@@ -778,7 +950,7 @@
             "sort_order": 400,
             "navigation_visible": false,
             "settings": null,
-            "hero_asset": null,
+            "hero_asset": "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg",
             "translations": {
                 "en": {
                     "slug": "working-together",
@@ -799,7 +971,7 @@
         },
         {
             "type": "page",
-            "sort_order": 2,
+            "sort_order": 500,
             "navigation_visible": true,
             "settings": null,
             "translations": {
@@ -861,7 +1033,546 @@
                         }
                     }
                 }
+            ],
+            "hero_asset": "media/115-sample-theme-forgeworks-b2b-demo-2-pexels-8956445jpg.jpg"
+        },
+        {
+            "type": "page",
+            "sort_order": 600,
+            "navigation_visible": true,
+            "hero_asset": "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg",
+            "translations": {
+                "en": {
+                    "slug": "component-examples",
+                    "title": "Component examples",
+                    "body": "<div data-eyivo-rich-text><h2>Make this website your own</h2><p>Explore <strong>formatted text</strong>, images and reusable sections. <a href=\"/about\">Learn about us</a> or <a href=\"/contact\">get in touch</a>.</p><ul><li>Replace the sample text and images.</li><li>Keep the sections that fit your business.</li></ul></div>"
+                }
+            },
+            "components": [
+                {
+                    "component_type": "eyivo:article_list",
+                    "area": "main",
+                    "position": 100,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Insights",
+                            "heading": "Useful thinking for the decisions ahead.",
+                            "items": [
+                                {
+                                    "date": "Insight 01",
+                                    "title": "Corporate Advisory: what good looks like",
+                                    "summary": "A concise field note from our senior team.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "date": "Insight 02",
+                                    "title": "Dispute Resolution: what good looks like",
+                                    "summary": "A concise field note from our senior team.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "date": "Insight 03",
+                                    "title": "Private Client: what good looks like",
+                                    "summary": "A concise field note from our senior team.",
+                                    "url": "/contact"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:business_hours",
+                    "area": "main",
+                    "position": 200,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Opening hours",
+                            "heading": "Here when you need us.",
+                            "items": [
+                                {
+                                    "day": "Monday–Friday",
+                                    "hours": "08:00–18:00"
+                                },
+                                {
+                                    "day": "Saturday",
+                                    "hours": "09:00–15:00"
+                                },
+                                {
+                                    "day": "Sunday",
+                                    "hours": "By appointment"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:contact_actions",
+                    "area": "bottom",
+                    "position": 300,
+                    "variant": null,
+                    "data": {
+                        "whatsapp_url": "https://wa.me/442079460284"
+                    },
+                    "translations": {
+                        "en": {
+                            "heading": "A real person, when you need one.",
+                            "text": "Call, email, or message us. We will route your enquiry to the right specialist."
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:credentials",
+                    "area": "main",
+                    "position": 400,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Standards",
+                            "heading": "Credibility you can verify.",
+                            "items": [
+                                {
+                                    "label": "Independent expertise",
+                                    "note": "Senior specialists on every engagement"
+                                },
+                                {
+                                    "label": "Quality assured",
+                                    "note": "Documented review at each milestone"
+                                },
+                                {
+                                    "label": "Responsible practice",
+                                    "note": "Clear commitments and transparent reporting"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:cta",
+                    "area": "main",
+                    "data": {
+                        "button_url": "/contact"
+                    },
+                    "translations": {
+                        "en": {
+                            "heading": "Let’s start a conversation",
+                            "text": "Tell us what you have in mind.",
+                            "button_label": "Contact us"
+                        },
+                        "tr": {
+                            "heading": "Let’s start a conversation",
+                            "text": "Tell us what you have in mind.",
+                            "button_label": "Bize ulaşın"
+                        }
+                    },
+                    "position": 500
+                },
+                {
+                    "component_type": "eyivo:download_list",
+                    "area": "main",
+                    "position": 600,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Resource library",
+                            "heading": "Details for your next conversation.",
+                            "items": [
+                                {
+                                    "url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "label": "Download an example image",
+                                    "type": "JPG",
+                                    "meta": "Demo photograph"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:feature_grid",
+                    "area": "main",
+                    "position": 700,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "What we offer",
+                            "heading": "Time and care set aside for you.",
+                            "intro": "A calm studio for thoughtful hair, skin, and wellbeing treatments tailored around the person, not the trend.",
+                            "items": [
+                                {
+                                    "icon": "01",
+                                    "title": "Hair Studio",
+                                    "text": "A thoughtful approach shaped around your goals."
+                                },
+                                {
+                                    "icon": "02",
+                                    "title": "Skin Rituals",
+                                    "text": "Practical expertise from the first conversation onward."
+                                },
+                                {
+                                    "icon": "03",
+                                    "title": "Wellness Plans",
+                                    "text": "Clear guidance and dependable delivery."
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:logo_cloud",
+                    "area": "main",
+                    "data": {},
+                    "translations": {
+                        "en": {
+                            "heading": "Example partners",
+                            "items": [
+                                {
+                                    "label": "Sample partner one"
+                                },
+                                {
+                                    "label": "Sample partner two"
+                                },
+                                {
+                                    "label": "Sample partner three"
+                                }
+                            ]
+                        }
+                    },
+                    "position": 800
+                },
+                {
+                    "component_type": "eyivo:project_grid",
+                    "area": "main",
+                    "position": 900,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Current portfolio",
+                            "heading": "Projects shaped by place and purpose.",
+                            "items": [
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "alt": "Campaigns",
+                                    "meta": "London · 2026",
+                                    "title": "Campaigns",
+                                    "text": "A considered response to context, community, and long-term value.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "alt": "Art Direction",
+                                    "meta": "Bristol · 2025",
+                                    "title": "Art Direction",
+                                    "text": "A considered response to context, community, and long-term value.",
+                                    "url": "/contact"
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "alt": "Production",
+                                    "meta": "Edinburgh · 2025",
+                                    "title": "Production",
+                                    "text": "A considered response to context, community, and long-term value.",
+                                    "url": "/contact"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:stats",
+                    "area": "main",
+                    "position": 1000,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "At a glance",
+                            "heading": "Experience, measured by what it enables.",
+                            "items": [
+                                {
+                                    "value": "18+",
+                                    "label": "Years of focused experience",
+                                    "note": "Across complex assignments"
+                                },
+                                {
+                                    "value": "94%",
+                                    "label": "Work from referrals",
+                                    "note": "Relationships built to last"
+                                },
+                                {
+                                    "value": "24h",
+                                    "label": "Typical first response",
+                                    "note": "Clear next steps, quickly"
+                                }
+                            ]
+                        },
+                        "tr": {
+                            "eyebrow": "Bir bakışta",
+                            "heading": "Experience, measured by what it enables.",
+                            "items": [
+                                {
+                                    "value": "18+",
+                                    "label": "Years of focused experience",
+                                    "note": "Across complex assignments"
+                                },
+                                {
+                                    "value": "94%",
+                                    "label": "Work from referrals",
+                                    "note": "Relationships built to last"
+                                },
+                                {
+                                    "value": "24h",
+                                    "label": "Typical first response",
+                                    "note": "Clear next steps, quickly"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:tabs",
+                    "area": "main",
+                    "position": 1100,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "heading": "One team, three ways to move forward.",
+                            "items": [
+                                {
+                                    "label": "Advisory",
+                                    "heading": "Advisory",
+                                    "text": "A focused pathway combining expert guidance, practical tools, and measurable outcomes."
+                                },
+                                {
+                                    "label": "Implementation",
+                                    "heading": "Implementation",
+                                    "text": "A focused pathway combining expert guidance, practical tools, and measurable outcomes."
+                                },
+                                {
+                                    "label": "Managed Support",
+                                    "heading": "Managed Support",
+                                    "text": "A focused pathway combining expert guidance, practical tools, and measurable outcomes."
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:team_grid",
+                    "area": "main",
+                    "position": 1200,
+                    "variant": null,
+                    "data": [],
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Your care team",
+                            "heading": "Experienced people who make time to listen.",
+                            "items": [
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "name": "Dr Amelia Hart",
+                                    "role": "Clinical Director",
+                                    "bio": "Thoughtful, evidence-led care with a clear focus on the individual."
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "name": "Dr Daniel Reed",
+                                    "role": "Consultant",
+                                    "bio": "Thoughtful, evidence-led care with a clear focus on the individual."
+                                },
+                                {
+                                    "image_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-1-pexels-6804068-fd15b401.jpg",
+                                    "name": "Nina Foster",
+                                    "role": "Patient Care Lead",
+                                    "bio": "Thoughtful, evidence-led care with a clear focus on the individual."
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:testimonials",
+                    "area": "main",
+                    "data": {},
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Example content",
+                            "heading": "Customer stories",
+                            "items": [
+                                {
+                                    "quote": "Use this space for a real customer story after receiving their permission.",
+                                    "name": "Sample customer",
+                                    "role": "Example testimonial"
+                                }
+                            ]
+                        }
+                    },
+                    "position": 1300
+                },
+                {
+                    "component_type": "eyivo:video",
+                    "area": "main",
+                    "data": {
+                        "video_url": "https://www.youtube.com/watch?v=YE7VzlLtp-4",
+                        "poster_url": "https://cdn.eyivo.com/images/demos/kyjyj4kb_2000011/tech-agency-demo-2-pexels-7988116-8f36042f.jpg"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Video example",
+                            "heading": "Watch a sample film",
+                            "summary": "Big Buck Bunny, by the Blender Foundation (CC BY 3.0). Replace this sample with your own video."
+                        }
+                    },
+                    "position": 1400
+                }
             ]
+        },
+        {
+            "type": "page",
+            "sort_order": 700,
+            "navigation_visible": false,
+            "settings": null,
+            "translations": {
+                "en": {
+                    "slug": "form-examples",
+                    "title": "Form examples",
+                    "body": "<div data-eyivo-rich-text><p>Each form below uses a different Eyivo form plugin. Keep the ones that fit your business and remove the rest.</p></div>",
+                    "meta_title": "Form examples | Northstar Studio",
+                    "meta_description": "Sample request forms for every Eyivo form plugin."
+                },
+                "tr": {
+                    "slug": "form-ornekleri",
+                    "title": "Form örnekleri",
+                    "body": "<div data-eyivo-rich-text><p>Aşağıdaki her form farklı bir Eyivo form eklentisini kullanır. İşinize uyanları tutun, diğerlerini kaldırın.</p></div>",
+                    "meta_title": "Form örnekleri | Northstar Studio",
+                    "meta_description": "Her Eyivo form eklentisi için örnek talep formları."
+                }
+            },
+            "components": [
+                {
+                    "component_type": "eyivo:lead_form",
+                    "area": "bottom",
+                    "position": 100,
+                    "variant": null,
+                    "data": {
+                        "form_binding": "product_inquiry"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Product enquiry",
+                            "heading": "Ask about a product",
+                            "text": "This sample form uses the Product Inquiry plugin. Northstar Studio is fictional, so no request is fulfilled.",
+                            "submit_label": "Send request"
+                        },
+                        "tr": {
+                            "eyebrow": "Ürün sorusu",
+                            "heading": "Bir ürün hakkında soru sorun",
+                            "text": "Bu örnek form Ürün Sorusu eklentisini kullanır. Northstar Studio kurgusaldır, bu nedenle talepler yerine getirilmez.",
+                            "submit_label": "Talep gönder"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:lead_form",
+                    "area": "bottom",
+                    "position": 200,
+                    "variant": null,
+                    "data": {
+                        "form_binding": "appointment"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Appointment request",
+                            "heading": "Book a call with the team",
+                            "text": "This sample form uses the Appointment Request plugin. Northstar Studio is fictional, so no request is fulfilled.",
+                            "submit_label": "Send request"
+                        },
+                        "tr": {
+                            "eyebrow": "Randevu talebi",
+                            "heading": "Ekiple bir görüşme ayarlayın",
+                            "text": "Bu örnek form Randevu Talebi eklentisini kullanır. Northstar Studio kurgusaldır, bu nedenle talepler yerine getirilmez.",
+                            "submit_label": "Talep gönder"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:lead_form",
+                    "area": "bottom",
+                    "position": 300,
+                    "variant": null,
+                    "data": {
+                        "form_binding": "course_application"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Course application",
+                            "heading": "Apply for a studio workshop",
+                            "text": "This sample form uses the Course Application plugin. Northstar Studio is fictional, so no request is fulfilled.",
+                            "submit_label": "Send request"
+                        },
+                        "tr": {
+                            "eyebrow": "Kurs başvurusu",
+                            "heading": "Stüdyo atölyesine başvurun",
+                            "text": "Bu örnek form Kurs Başvurusu eklentisini kullanır. Northstar Studio kurgusaldır, bu nedenle talepler yerine getirilmez.",
+                            "submit_label": "Talep gönder"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:lead_form",
+                    "area": "bottom",
+                    "position": 400,
+                    "variant": null,
+                    "data": {
+                        "form_binding": "reservation"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Reservation request",
+                            "heading": "Reserve a seat at an open studio evening",
+                            "text": "This sample form uses the Reservation Request plugin. Northstar Studio is fictional, so no request is fulfilled.",
+                            "submit_label": "Send request"
+                        },
+                        "tr": {
+                            "eyebrow": "Rezervasyon talebi",
+                            "heading": "Açık stüdyo akşamında yer ayırtın",
+                            "text": "Bu örnek form Rezervasyon Talebi eklentisini kullanır. Northstar Studio kurgusaldır, bu nedenle talepler yerine getirilmez.",
+                            "submit_label": "Talep gönder"
+                        }
+                    }
+                },
+                {
+                    "component_type": "eyivo:lead_form",
+                    "area": "bottom",
+                    "position": 500,
+                    "variant": null,
+                    "data": {
+                        "form_binding": "property_inquiry"
+                    },
+                    "translations": {
+                        "en": {
+                            "eyebrow": "Property enquiry",
+                            "heading": "Ask about our studio space",
+                            "text": "This sample form uses the Property Inquiry plugin. Northstar Studio is fictional, so no request is fulfilled.",
+                            "submit_label": "Send request"
+                        },
+                        "tr": {
+                            "eyebrow": "Mülk sorusu",
+                            "heading": "Stüdyo alanımız hakkında soru sorun",
+                            "text": "Bu örnek form Mülk Sorusu eklentisini kullanır. Northstar Studio kurgusaldır, bu nedenle talepler yerine getirilmez.",
+                            "submit_label": "Talep gönder"
+                        }
+                    }
+                }
+            ],
+            "hero_asset": "media/116-sample-theme-forgeworks-b2b-demo-3-pexels-28929510jpg.jpg"
         }
     ],
     "catalog": [
@@ -1070,7 +1781,7 @@
         {
             "source_type": "url",
             "source_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "media_asset": null,
+            "media_asset": "media/114-sample-theme-forgeworks-b2b-demo-1-pexels-8865187jpg.jpg",
             "presentation_mode": "inline",
             "sort_order": 100,
             "translations": {
@@ -1089,7 +1800,7 @@
         {
             "source_type": "url",
             "source_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "media_asset": null,
+            "media_asset": "media/115-sample-theme-forgeworks-b2b-demo-2-pexels-8956445jpg.jpg",
             "presentation_mode": "inline",
             "sort_order": 200,
             "translations": {
@@ -1108,7 +1819,7 @@
         {
             "source_type": "url",
             "source_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "media_asset": null,
+            "media_asset": "media/116-sample-theme-forgeworks-b2b-demo-3-pexels-28929510jpg.jpg",
             "presentation_mode": "inline",
             "sort_order": 300,
             "translations": {
@@ -1196,6 +1907,23 @@
                 "slugs": {
                     "en": "contact",
                     "tr": "iletisim"
+                }
+            },
+            {
+                "type": "page",
+                "slug": "component-examples",
+                "labels": {},
+                "slugs": {
+                    "en": "component-examples"
+                }
+            },
+            {
+                "type": "page",
+                "slug": "form-examples",
+                "labels": {},
+                "slugs": {
+                    "en": "form-examples",
+                    "tr": "form-ornekleri"
                 }
             }
         ],

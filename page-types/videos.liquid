@@ -1,5 +1,6 @@
 <main id="main-content">
-    <section class="page-hero inner-hero">
+    {% for video in videos %}{% if video.media and video.playback_url == blank %}{% unless hero_image %}{% assign hero_image = video.media %}{% endunless %}{% endif %}{% endfor %}
+    <section class="page-hero inner-hero{% if hero_image %} has-image{% endif %}">{% if hero_image %}<img class="hero-backdrop" src="{{ hero_image.url }}" alt="" width="{{ hero_image.width }}" height="{{ hero_image.height }}">{% endif %}<div class="hero-shade"></div>
         <div class="shell hero-content">
             <nav class="breadcrumbs" aria-label="{{ 'Breadcrumb' | t }}">
                 <a href="{{ routes.home }}">{{ 'Home' | t }}</a><span>/</span><span aria-current="page">{{ "Videos" | t }}</span>

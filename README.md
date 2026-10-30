@@ -5,11 +5,15 @@ A complete, self-contained example theme for Eyivo Theme API `1.0`. Use it as a 
 ## What is included
 
 - A responsive Liquid layout with locale and right-to-left support
+- Desktop navigation uses rounded active/hover states with the accent underline below each label
 - Home, standard page, gallery, contact, catalog, catalog item, video, blog listing, category, and article page types
 - Theme settings and defaults in `theme.json`
 - Reusable Eyivo core components declared per content area
 - A theme-owned component with editable, translatable fields and variants
 - A contact form demonstrating the platform-required Human Verification plugin
+- Form bindings for all seven Eyivo form plugins (`contact`, `quote_request`, `product_inquiry`, `appointment`, `course_application`, `reservation`, `property_inquiry`). The Contact page shows the contact form, the home page the quote form, and a Form examples page linked from the footer the other five. Human verification is added to every form automatically, and the Ads plugin needs no theme code, so neither is declared in `theme.json`.
+- Main navigation shows five links and moves the rest into a More menu built with `<details>`, so it works without JavaScript
+- Hero backgrounds on every page except policy pages: page hero images, and on listings the first gallery photo, product cover, video poster or post cover
 - Responsive CSS and package-local image/font assets (custom JavaScript is disabled in Theme API v1)
 - Demo metadata in `demo.json`
 - Desktop and mobile screenshots from a real seeded Eyivo site
@@ -277,6 +281,27 @@ The sample adds no editor JavaScript or storage credentials. Platform-owned
 editors, plugins, and media delivery supply those capabilities.
 
 Version 1.3.0 previews include a generic page-body example, independent Footer links, and keyboard-operated mobile quick navigation. The stable design class also works with platform-assigned custom theme keys.
+
+### Ads in rich-text fields
+
+The optional Ads plugin (`eyivo/monetization`) needs no theme code. Site owners
+save their ad network's code as ad slots and choose a slot above any rich-text
+field, including multi-line fields of items they add to a section. The field's
+text is kept and returns when the owner chooses Text again.
+
+- Do not declare `eyivo/monetization` in `theme.json`; owners install it from
+  the Plugins page.
+- Render rich-text fields escaped, as above. Eyivo replaces a bound field after
+  rendering. When the field is the only content of its element, the whole
+  element is replaced, so give each rich-text field its own element, as
+  `capability_note.liquid` does with
+  `<div class="prose capability-note-body">{{ component.data.text }}</div>`,
+  and do not rely on that element's styles around an ad.
+- Ads run only on the owner's own domain. Previews show a grey box with the
+  slot's name; the Eyivo address shows the field's text.
+- Theme files stay subject to the custom-theme CSP. Eyivo relaxes the script
+  rule only on pages showing a live ad, for the owner's ad code.
+- Never put ad code, slot IDs or `_ads` bindings in `demo.json`.
 
 ## Optional demo translations
 
