@@ -36,22 +36,21 @@ See [FEATURES.md](FEATURES.md) for the complete coverage matrix.
 ## Required screenshot policy
 
 Every theme upload must include `demo.json` and at least one screenshot captured
-after loading that demo data. Save each capture in `preview/` and declare it in
-`theme.json` under `preview`, with `data_source` set to `demo_data`, its
-`preview/` path, page, and viewport. `source_path` is optional and defaults to
-the same file. The app panel rejects packages without this declaration or its
-preview image.
+after loading that demo data. Save each capture in `screenshots/` and declare it
+in `theme.json` under `preview`, with `data_source` set to `demo_data`, its
+`screenshots/` path, page, and viewport. The app panel rejects packages without
+this declaration or its screenshot.
 
 ## Screenshots
 
 | Desktop | Mobile |
 | --- | --- |
-| [![Home desktop](sample-theme/preview/home-desktop.png)](sample-theme/preview/home-desktop.png) | [![Home mobile](sample-theme/preview/home-mobile.png)](sample-theme/preview/home-mobile.png) |
-| [![Catalog desktop](sample-theme/preview/catalog-desktop.png)](sample-theme/preview/catalog-desktop.png) | [![Catalog mobile](sample-theme/preview/catalog-mobile.png)](sample-theme/preview/catalog-mobile.png) |
-| [![Gallery desktop](sample-theme/preview/gallery-desktop.png)](sample-theme/preview/gallery-desktop.png) | [![Gallery mobile](sample-theme/preview/gallery-mobile.png)](sample-theme/preview/gallery-mobile.png) |
-| [![Contact desktop](sample-theme/preview/contact-desktop.png)](sample-theme/preview/contact-desktop.png) | [![Contact mobile](sample-theme/preview/contact-mobile.png)](sample-theme/preview/contact-mobile.png) |
+| [![Home desktop](sample-theme/screenshots/home-desktop.png)](sample-theme/screenshots/home-desktop.png) | [![Home mobile](sample-theme/screenshots/home-mobile.png)](sample-theme/screenshots/home-mobile.png) |
+| [![Catalog desktop](sample-theme/screenshots/catalog-desktop.png)](sample-theme/screenshots/catalog-desktop.png) | [![Catalog mobile](sample-theme/screenshots/catalog-mobile.png)](sample-theme/screenshots/catalog-mobile.png) |
+| [![Gallery desktop](sample-theme/screenshots/gallery-desktop.png)](sample-theme/screenshots/gallery-desktop.png) | [![Gallery mobile](sample-theme/screenshots/gallery-mobile.png)](sample-theme/screenshots/gallery-mobile.png) |
+| [![Contact desktop](sample-theme/screenshots/contact-desktop.png)](sample-theme/screenshots/contact-desktop.png) | [![Contact mobile](sample-theme/screenshots/contact-mobile.png)](sample-theme/screenshots/contact-mobile.png) |
 
-Additional views: [About](sample-theme/preview/about-desktop.png), [catalog detail](sample-theme/preview/catalog-detail-desktop.png), [videos](sample-theme/preview/videos-desktop.png), [page body](sample-theme/preview/page-body-desktop.png), [Footer desktop](sample-theme/preview/footer-desktop.png), [Footer mobile](sample-theme/preview/footer-mobile.png), and [mobile navigation](sample-theme/preview/navigation-mobile.png).
+Additional views: [About](sample-theme/screenshots/about-desktop.png), [catalog detail](sample-theme/screenshots/catalog-detail-desktop.png), [videos](sample-theme/screenshots/videos-desktop.png), [page body](sample-theme/screenshots/page-body-desktop.png), [Footer desktop](sample-theme/screenshots/footer-desktop.png), [Footer mobile](sample-theme/screenshots/footer-mobile.png), and [mobile navigation](sample-theme/screenshots/navigation-mobile.png).
 
 ## Directory structure
 
@@ -86,7 +85,7 @@ eyivo-sample-theme/               repository
     ├── locales/
     │   ├── en.json
     │   └── tr.json
-    ├── preview/                  demo-data screenshots
+    ├── screenshots/              demo-data screenshots
     ├── demo.json
     └── theme.json
 ```

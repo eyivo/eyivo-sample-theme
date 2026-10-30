@@ -57,7 +57,6 @@ $files = static function (string $directory): array {
         $relative = str_replace('\\', '/', substr($file->getPathname(), strlen(rtrim($directory, '/\\')) + 1));
         if ($file->isFile()
             && ! str_starts_with($relative, '.git/')
-            && ! str_starts_with($relative, 'screenshots/')
             && ! str_starts_with($relative, 'bin/')
             && ! in_array($relative, ['.gitignore', 'LICENSE'], true)) {
             $result[$relative] = $file->getPathname();
@@ -77,12 +76,13 @@ $validate = static function (string $directory) use ($fail, $files): array {
     } catch (JsonException $exception) {
         $fail('theme.json is invalid: '.$exception->getMessage());
     }
-    foreach (['key', 'name', 'version', 'eyivo_theme_api'] as $field) {
+    foreach (['name', 'version', 'eyivo_theme_api'] as $field) {
         if (! is_string($manifest[$field] ?? null) || trim($manifest[$field]) === '') {
             $fail("theme.json must provide {$field}.");
         }
     }
-    if (preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $manifest['key']) !== 1) {
+    // Eyivo gives every uploaded theme its own ID; key is an optional label.
+    if (array_key_exists('key', $manifest) && preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', (string) $manifest['key']) !== 1) {
         $fail('The theme key may contain only lowercase letters, numbers, and hyphens.');
     }
     if (preg_match('/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/', $manifest['version']) !== 1) {
@@ -143,14 +143,11 @@ $validate = static function (string $directory) use ($fail, $files): array {
         $fail('theme.json must declare at least one demo-data preview screenshot.');
     }
     foreach ($screenshots as $index => $screenshot) {
-        $targetPath = is_array($screenshot) ? ($screenshot['path'] ?? null) : null;
-        // Screenshots normally sit in preview/ already; an older layout keeps them in screenshots/.
-        $sourcePath = is_array($screenshot) ? ($screenshot['source_path'] ?? $targetPath) : null;
-        if (! is_string($sourcePath) || ! is_string($targetPath)
-            || preg_match('#^(?:preview|screenshots)/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $sourcePath) !== 1
-            || preg_match('#^preview/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $targetPath) !== 1
-            || ! is_file($directory.'/'.$sourcePath)) {
-            $fail("theme.json preview.screenshots.{$index} must reference an existing screenshot source and preview image path.");
+        $path = is_array($screenshot) ? ($screenshot['path'] ?? null) : null;
+        if (! is_string($path)
+            || preg_match('#^screenshots/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $path) !== 1
+            || ! is_file($directory.'/'.$path)) {
+            $fail("theme.json preview.screenshots.{$index}.path must reference an existing image in screenshots/.");
         }
         if (! is_string($screenshot['page'] ?? null) || trim($screenshot['page']) === ''
             || ! in_array($screenshot['viewport'] ?? null, ['desktop', 'mobile'], true)) {
@@ -221,20 +218,7 @@ if ($command === 'init') {
             $fail("Unable to copy {$relative}.");
         }
     }
-    $manifest = $validate($source);
-    foreach ($manifest['preview']['screenshots'] as $screenshot) {
-        $sourcePath = $screenshot['source_path'] ?? $screenshot['path'];
-        $destination = rtrim($target, '/\\').DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $sourcePath);
-        if (is_file($destination)) {
-            continue;
-        }
-        if (! is_dir(dirname($destination)) && ! mkdir(dirname($destination), 0755, true) && ! is_dir(dirname($destination))) {
-            $fail("Unable to create the directory for {$sourcePath}.");
-        }
-        if (! copy($source.'/'.$sourcePath, $destination)) {
-            $fail("Unable to copy {$sourcePath}.");
-        }
-    }
+    $validate($source);
     fwrite(STDOUT, "Created an Eyivo Theme API v1 scaffold at {$target}\nEdit theme.json, then run validate and pack.\n");
     exit(0);
 }
@@ -250,7 +234,7 @@ if ($command === 'pack') {
     if (! class_exists(ZipArchive::class)) {
         $fail('PHP zip support is required to pack a theme.');
     }
-    $target = $argv[3] ?? dirname($root).'/'.$manifest['key'].'-'.$manifest['version'].'.zip';
+    $target = $argv[3] ?? dirname($root).'/'.($manifest['key'] ?? 'theme').'-'.$manifest['version'].'.zip';
     $zip = new ZipArchive;
     if ($zip->open($target, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
         $fail("Unable to create {$target}.");
@@ -259,16 +243,6 @@ if ($command === 'pack') {
         $zip->addFile($absolute, $relative);
         if (method_exists($zip, 'setMtimeName')) {
             $zip->setMtimeName($relative, 946684800);
-        }
-    }
-    foreach ($manifest['preview']['screenshots'] as $screenshot) {
-        $sourcePath = $screenshot['source_path'] ?? $screenshot['path'];
-        if ($sourcePath === $screenshot['path']) {
-            continue;
-        }
-        $zip->addFile($root.'/'.$sourcePath, $screenshot['path']);
-        if (method_exists($zip, 'setMtimeName')) {
-            $zip->setMtimeName($screenshot['path'], 946684800);
         }
     }
     $zip->close();
