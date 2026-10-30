@@ -13,6 +13,8 @@ The theme is the **`sample-theme/`** folder. Everything else in this repository 
 
 Eyivo gives every uploaded theme its own ID, so the folder name inside your zip and the `key` in `theme.json` don't matter. Unless noted otherwise, the paths below are relative to `sample-theme/`.
 
+Step-by-step guide: [Custom themes](https://eyivo.com/docs/custom-themes). Every file and setting a theme can use: [Theme API](https://eyivo.com/developers/theme-api).
+
 ## What is included
 
 - A responsive Liquid layout with locale and right-to-left support
