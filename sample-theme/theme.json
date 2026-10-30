@@ -8,91 +8,91 @@
         "screenshots": [
             {
                 "path": "preview/home-desktop.png",
-                "source_path": "screenshots/home-desktop.png",
+                "source_path": "preview/home-desktop.png",
                 "page": "home",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/home-mobile.png",
-                "source_path": "screenshots/home-mobile.png",
+                "source_path": "preview/home-mobile.png",
                 "page": "home",
                 "viewport": "mobile"
             },
             {
                 "path": "preview/catalog-desktop.png",
-                "source_path": "screenshots/catalog-desktop.png",
+                "source_path": "preview/catalog-desktop.png",
                 "page": "products",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/catalog-mobile.png",
-                "source_path": "screenshots/catalog-mobile.png",
+                "source_path": "preview/catalog-mobile.png",
                 "page": "products",
                 "viewport": "mobile"
             },
             {
                 "path": "preview/catalog-detail-desktop.png",
-                "source_path": "screenshots/catalog-detail-desktop.png",
+                "source_path": "preview/catalog-detail-desktop.png",
                 "page": "product",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/gallery-desktop.png",
-                "source_path": "screenshots/gallery-desktop.png",
+                "source_path": "preview/gallery-desktop.png",
                 "page": "gallery",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/gallery-mobile.png",
-                "source_path": "screenshots/gallery-mobile.png",
+                "source_path": "preview/gallery-mobile.png",
                 "page": "gallery",
                 "viewport": "mobile"
             },
             {
                 "path": "preview/contact-desktop.png",
-                "source_path": "screenshots/contact-desktop.png",
+                "source_path": "preview/contact-desktop.png",
                 "page": "contact",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/contact-mobile.png",
-                "source_path": "screenshots/contact-mobile.png",
+                "source_path": "preview/contact-mobile.png",
                 "page": "contact",
                 "viewport": "mobile"
             },
             {
                 "path": "preview/about-desktop.png",
-                "source_path": "screenshots/about-desktop.png",
+                "source_path": "preview/about-desktop.png",
                 "page": "page",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/videos-desktop.png",
-                "source_path": "screenshots/videos-desktop.png",
+                "source_path": "preview/videos-desktop.png",
                 "page": "videos",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/page-body-desktop.png",
-                "source_path": "screenshots/page-body-desktop.png",
+                "source_path": "preview/page-body-desktop.png",
                 "page": "page",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/footer-desktop.png",
-                "source_path": "screenshots/footer-desktop.png",
+                "source_path": "preview/footer-desktop.png",
                 "page": "home",
                 "viewport": "desktop"
             },
             {
                 "path": "preview/footer-mobile.png",
-                "source_path": "screenshots/footer-mobile.png",
+                "source_path": "preview/footer-mobile.png",
                 "page": "home",
                 "viewport": "mobile"
             },
             {
                 "path": "preview/navigation-mobile.png",
-                "source_path": "screenshots/navigation-mobile.png",
+                "source_path": "preview/navigation-mobile.png",
                 "page": "home",
                 "viewport": "mobile"
             }

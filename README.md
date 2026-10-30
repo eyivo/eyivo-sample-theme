@@ -2,6 +2,17 @@
 
 A complete, self-contained example theme for Eyivo Theme API `1.0`. Use it as a starting point for a custom theme or as a reference while developing one.
 
+## Start here
+
+The theme is the **`sample-theme/`** folder. Everything else in this repository is documentation and an optional helper tool.
+
+1. Download this repository, or use **Download sample theme** under Custom themes in the Eyivo panel.
+2. Edit only the files in `sample-theme/`. Raise `version` in `sample-theme/theme.json` every time you upload the same theme again.
+3. Zip the `sample-theme` folder. The folder is already a complete package, screenshots included, so no build step is needed.
+4. In Eyivo, open **Custom themes** and upload the zip as a **new theme**. For later changes, open that theme and use **Upload a new version**. Then switch each site to the new version (use it as a draft, then publish).
+
+Eyivo gives every uploaded theme its own ID, so the folder name inside your zip and the `key` in `theme.json` don't matter. Unless noted otherwise, the paths below are relative to `sample-theme/`.
+
 ## What is included
 
 - A responsive Liquid layout with locale and right-to-left support
@@ -23,55 +34,59 @@ See [FEATURES.md](FEATURES.md) for the complete coverage matrix.
 ## Required screenshot policy
 
 Every theme upload must include `demo.json` and at least one screenshot captured
-after loading that demo data. Declare each capture in `theme.json` under
-`preview`, with `data_source` set to `demo_data`, a build-time `source_path`,
-the packaged `preview/` path, page, and viewport. The helper validates the
-source captures and places them in the ZIP; the app panel rejects packages
-without this declaration or its corresponding preview image.
+after loading that demo data. Save each capture in `preview/` and declare it in
+`theme.json` under `preview`, with `data_source` set to `demo_data`, its
+`preview/` path, page, and viewport. `source_path` is optional and defaults to
+the same file. The app panel rejects packages without this declaration or its
+preview image.
 
 ## Screenshots
 
 | Desktop | Mobile |
 | --- | --- |
-| [![Home desktop](screenshots/home-desktop.png)](screenshots/home-desktop.png) | [![Home mobile](screenshots/home-mobile.png)](screenshots/home-mobile.png) |
-| [![Catalog desktop](screenshots/catalog-desktop.png)](screenshots/catalog-desktop.png) | [![Catalog mobile](screenshots/catalog-mobile.png)](screenshots/catalog-mobile.png) |
-| [![Gallery desktop](screenshots/gallery-desktop.png)](screenshots/gallery-desktop.png) | [![Gallery mobile](screenshots/gallery-mobile.png)](screenshots/gallery-mobile.png) |
-| [![Contact desktop](screenshots/contact-desktop.png)](screenshots/contact-desktop.png) | [![Contact mobile](screenshots/contact-mobile.png)](screenshots/contact-mobile.png) |
+| [![Home desktop](sample-theme/preview/home-desktop.png)](sample-theme/preview/home-desktop.png) | [![Home mobile](sample-theme/preview/home-mobile.png)](sample-theme/preview/home-mobile.png) |
+| [![Catalog desktop](sample-theme/preview/catalog-desktop.png)](sample-theme/preview/catalog-desktop.png) | [![Catalog mobile](sample-theme/preview/catalog-mobile.png)](sample-theme/preview/catalog-mobile.png) |
+| [![Gallery desktop](sample-theme/preview/gallery-desktop.png)](sample-theme/preview/gallery-desktop.png) | [![Gallery mobile](sample-theme/preview/gallery-mobile.png)](sample-theme/preview/gallery-mobile.png) |
+| [![Contact desktop](sample-theme/preview/contact-desktop.png)](sample-theme/preview/contact-desktop.png) | [![Contact mobile](sample-theme/preview/contact-mobile.png)](sample-theme/preview/contact-mobile.png) |
 
-Additional views: [About](screenshots/about-desktop.png), [catalog detail](screenshots/catalog-detail-desktop.png), [videos](screenshots/videos-desktop.png), [page body](screenshots/page-body-desktop.png), [Footer desktop](screenshots/footer-desktop.png), [Footer mobile](screenshots/footer-mobile.png), and [mobile navigation](screenshots/navigation-mobile.png).
+Additional views: [About](sample-theme/preview/about-desktop.png), [catalog detail](sample-theme/preview/catalog-detail-desktop.png), [videos](sample-theme/preview/videos-desktop.png), [page body](sample-theme/preview/page-body-desktop.png), [Footer desktop](sample-theme/preview/footer-desktop.png), [Footer mobile](sample-theme/preview/footer-mobile.png), and [mobile navigation](sample-theme/preview/navigation-mobile.png).
 
 ## Directory structure
 
 ```text
-sample-theme/
-├── assets/
-│   ├── css/
-│   │   ├── base.css
-│   │   └── theme.css
-├── components/
-│   └── capability_note.liquid
-├── layouts/
-│   └── default.liquid
-├── page-types/
-│   ├── contact.liquid
-│   ├── gallery.liquid
-│   ├── home.liquid
-│   ├── page.liquid
-│   ├── product.liquid
-│   ├── products.liquid
-│   ├── videos.liquid
-│   ├── blog.liquid
-│   ├── blog_category.liquid
-│   └── blog_post.liquid
-├── locales/
-│   ├── en.json
-│   └── tr.json
-├── screenshots/
-├── bin/
-│   └── eyivo-theme
-├── demo.json
+eyivo-sample-theme/               repository
+├── README.md
 ├── FEATURES.md
-└── theme.json
+├── FOUNDATION-COMPOSITION.md
+├── LICENSE
+├── bin/
+│   └── eyivo-theme               optional helper: validate, pack, init
+└── sample-theme/                 the theme: edit, zip and upload this folder
+    ├── assets/
+    │   └── css/
+    │       ├── base.css
+    │       └── theme.css
+    ├── components/
+    │   └── capability_note.liquid
+    ├── layouts/
+    │   └── default.liquid
+    ├── page-types/
+    │   ├── contact.liquid
+    │   ├── gallery.liquid
+    │   ├── home.liquid
+    │   ├── page.liquid
+    │   ├── product.liquid
+    │   ├── products.liquid
+    │   ├── videos.liquid
+    │   ├── blog.liquid
+    │   ├── blog_category.liquid
+    │   └── blog_post.liquid
+    ├── locales/
+    │   ├── en.json
+    │   └── tr.json
+    ├── preview/                  demo-data screenshots
+    ├── demo.json
+    └── theme.json
 ```
 
 The theme uses the full built-in `eyivo:*` component library and includes `theme:capability_note` as an example of a theme-owned component. Its schema, defaults, translations, and variants are declared under `components` in `theme.json`. Theme API v1 intentionally disables custom JavaScript and external assets; interactive platform features remain platform-owned.
@@ -91,7 +106,7 @@ The header uses native `<details>` navigation on desktop and mobile. Back-to-top
 3. Define editable theme settings under `settings` and their initial values under `defaults`.
 4. Edit the Liquid files in `layouts` and `page-types`.
 5. Add styles and permitted package-local assets under `assets`.
-6. Increment the theme version before uploading a new release.
+6. Increment the theme version before uploading a new version of the same theme.
 
 User-facing static text in Liquid should use the translation filter:
 
@@ -164,22 +179,23 @@ Plugin packages and PHP handlers remain separate from theme archives. Public sub
 
 ## Package for upload
 
-Validate and create a deterministic upload archive with the dependency-free helper:
+Zip the `sample-theme` folder and upload the zip. A zip of the folder itself and a zip of its contents are both accepted, because Eyivo ignores one wrapping folder.
+
+The optional helper checks the theme before you upload and can build the zip for you. It needs PHP 8.1 or later on your computer:
 
 ```bash
+php bin/eyivo-theme validate sample-theme
+php bin/eyivo-theme pack sample-theme ../eyivo-sample-theme.zip
 php bin/eyivo-theme init ../my-eyivo-theme
-php bin/eyivo-theme validate .
-php bin/eyivo-theme pack . ../eyivo-sample-theme.zip
 ```
 
-Create a ZIP whose archive root contains `theme.json`; do not place all theme files inside an additional parent directory.
+`init` copies `sample-theme/` to a new folder as a starting point for your own theme.
 
-Use the helper's `pack` command so declared screenshot sources are copied into their required `preview/` paths in the archive. A ZIP made from only the source asset/template directories omits those required preview files.
-
-When custom-theme uploads are enabled, upload that archive from:
+Upload the zip from:
 
 ```text
-App Panel → Custom Themes → Upload Theme
+App Panel → Custom themes → Upload a new theme
+App Panel → Custom themes → (your theme) → Upload a new version
 ```
 
 Do not copy this project into the built-in themes directory. Upload it through the Custom Themes library so it follows the same validation, node warmup, preview, Branding draft, and publication path as every user theme.

@@ -41,7 +41,9 @@ class SampleMenuDefinition
 }
 
 $command = $argv[1] ?? 'help';
-$root = realpath($argv[2] ?? getcwd()) ?: ($argv[2] ?? getcwd());
+// The theme lives in sample-theme/; it is the default folder for validate and pack.
+$themeFolder = dirname(__DIR__).'/sample-theme';
+$root = realpath($argv[2] ?? $themeFolder) ?: ($argv[2] ?? $themeFolder);
 
 $fail = static function (string $message, int $code = 1): never {
     fwrite(STDERR, "Error: {$message}\n");
@@ -141,10 +143,11 @@ $validate = static function (string $directory) use ($fail, $files): array {
         $fail('theme.json must declare at least one demo-data preview screenshot.');
     }
     foreach ($screenshots as $index => $screenshot) {
-        $sourcePath = is_array($screenshot) ? ($screenshot['source_path'] ?? null) : null;
         $targetPath = is_array($screenshot) ? ($screenshot['path'] ?? null) : null;
+        // Screenshots normally sit in preview/ already; an older layout keeps them in screenshots/.
+        $sourcePath = is_array($screenshot) ? ($screenshot['source_path'] ?? $targetPath) : null;
         if (! is_string($sourcePath) || ! is_string($targetPath)
-            || preg_match('#^screenshots/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $sourcePath) !== 1
+            || preg_match('#^(?:preview|screenshots)/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $sourcePath) !== 1
             || preg_match('#^preview/[a-z0-9][a-z0-9._/-]*\.(?:png|jpe?g|webp)$#i', $targetPath) !== 1
             || ! is_file($directory.'/'.$sourcePath)) {
             $fail("theme.json preview.screenshots.{$index} must reference an existing screenshot source and preview image path.");
@@ -205,7 +208,7 @@ if ($command === 'init') {
     if (! mkdir($target, 0755, true) && ! is_dir($target)) {
         $fail('Unable to create the destination.');
     }
-    $source = dirname(__DIR__);
+    $source = $themeFolder;
     foreach ($files($source) as $relative => $absolute) {
         if (strtolower(pathinfo($relative, PATHINFO_EXTENSION)) === 'zip') {
             continue;
@@ -220,8 +223,11 @@ if ($command === 'init') {
     }
     $manifest = $validate($source);
     foreach ($manifest['preview']['screenshots'] as $screenshot) {
-        $sourcePath = $screenshot['source_path'];
+        $sourcePath = $screenshot['source_path'] ?? $screenshot['path'];
         $destination = rtrim($target, '/\\').DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $sourcePath);
+        if (is_file($destination)) {
+            continue;
+        }
         if (! is_dir(dirname($destination)) && ! mkdir(dirname($destination), 0755, true) && ! is_dir(dirname($destination))) {
             $fail("Unable to create the directory for {$sourcePath}.");
         }
@@ -256,7 +262,11 @@ if ($command === 'pack') {
         }
     }
     foreach ($manifest['preview']['screenshots'] as $screenshot) {
-        $zip->addFile($root.'/'.$screenshot['source_path'], $screenshot['path']);
+        $sourcePath = $screenshot['source_path'] ?? $screenshot['path'];
+        if ($sourcePath === $screenshot['path']) {
+            continue;
+        }
+        $zip->addFile($root.'/'.$sourcePath, $screenshot['path']);
         if (method_exists($zip, 'setMtimeName')) {
             $zip->setMtimeName($screenshot['path'], 946684800);
         }
@@ -274,8 +284,9 @@ Usage:
   php bin/eyivo-theme validate [theme-directory]
   php bin/eyivo-theme pack [theme-directory] [output.zip]
 
-The app panel remains the authority: upload the generated ZIP under Custom Themes,
-preview it against an owned site, then select it as a Branding draft and publish.
+The theme directory defaults to sample-theme/. That folder is a complete package:
+zipping it yourself works too. The app panel remains the authority: upload the
+ZIP under Custom Themes as a new theme, or as a new version from the theme's page.
 HELP
 );
 fwrite(STDOUT, "\n");
