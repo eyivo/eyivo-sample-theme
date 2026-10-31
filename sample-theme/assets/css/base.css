@@ -163,6 +163,9 @@
     .service-list article > span { color: var(--accent-ink, var(--accent)); font-size: .65rem; }
     .service-list article > a { align-items: center; border: 1px solid var(--line); border-radius: 50%; display: flex; height: 3rem; justify-content: center; width: 3rem; }
     .native-card-grid { display: grid; gap: clamp(1rem, 2vw, 2rem); grid-template-columns: repeat(3, 1fr); }
+    .catalog-search { display: grid; gap: .5rem; margin-bottom: 1.5rem; max-width: 32rem; }
+    .catalog-search input { border: 1px solid var(--line); border-radius: .75rem; font: inherit; padding: .75rem 1rem; }
+    .catalog-search[hidden], .catalog-search [hidden], .native-card[hidden] { display: none; }
     .native-card { background: var(--surface); border-radius: var(--radius); overflow: hidden; transition: transform .3s, box-shadow .3s; }
     .native-card:hover { box-shadow: var(--shadow); transform: translateY(-7px); }
     .native-card img { aspect-ratio: 4 / 3; display: block; height: auto; object-fit: cover; transition: transform .5s; width: 100%; }

@@ -45,6 +45,101 @@ $command = $argv[1] ?? 'help';
 $themeFolder = dirname(__DIR__).'/sample-theme';
 $root = realpath($argv[2] ?? $themeFolder) ?: ($argv[2] ?? $themeFolder);
 
+// Mirrors the platform's Theme API 1.1 script rules: where files live, their limits, no import/export, readable code,
+// and how templates may load them. The platform's AI review runs only after upload.
+$scriptRules = new class
+{
+    /** @param list<string> $scripts @return list<string> */
+    public function __invoke(string $directory, array $scripts, bool $allowed, array $manifest): array
+    {
+        $errors = [];
+        if ($scripts !== [] && ! $allowed) {
+            $errors[] = 'custom_javascript_declaration: theme.json: a package with JavaScript files must declare "eyivo_theme_api": "1.1" and "capabilities": {"custom_javascript": true}.';
+        }
+        if ($scripts === [] && ($manifest['capabilities']['custom_javascript'] ?? false) === true) {
+            $errors[] = 'custom_javascript_declaration: theme.json: capabilities.custom_javascript is declared, but the package has no assets/js files.';
+        }
+        if (count($scripts) > 20) {
+            $errors[] = 'script_size: a theme may include at most 20 JavaScript files.';
+        }
+        $total = 0;
+        foreach ($scripts as $path) {
+            if (preg_match('~^assets/js/[A-Za-z0-9_][A-Za-z0-9_.-]{0,99}\.js$~D', $path) !== 1) {
+                $errors[] = "script_file: {$path}: JavaScript files are allowed only directly in assets/js/.";
+
+                continue;
+            }
+            $source = (string) file_get_contents($directory.'/'.$path);
+            $total += strlen($source);
+            if (strlen($source) > 102400) {
+                $errors[] = "script_size: {$path}: a JavaScript file may be at most 100 KB.";
+            }
+            if (! mb_check_encoding($source, 'UTF-8')) {
+                $errors[] = "script_file: {$path}: JavaScript files must be UTF-8 text.";
+
+                continue;
+            }
+            $code = $this->code($source);
+            if (preg_match('/^[ \t]*(import|export)\b(?![ \t]*[.:(=])/m', $code) === 1 || preg_match('/(?<![.\w$])import[ \t]*\(/', $code) === 1) {
+                $errors[] = "script_import: {$path}: import and export are not allowed; share code through a global such as window.ThemeName.";
+            }
+            foreach (preg_split('/\R/', $source) ?: [] as $number => $line) {
+                if (strlen($line) > 400) {
+                    $errors[] = "readability: {$path}:".($number + 1).': a line longer than 400 characters looks minified; upload readable source.';
+                    break;
+                }
+            }
+            if (preg_match('/eval\s*\(\s*function\s*\(\s*p\s*,\s*a\s*,\s*c\s*,\s*k\s*,\s*e|[A-Za-z0-9+\/=]{200,}|(?:\\\\x[0-9a-fA-F]{2}){20,}/', $source) === 1
+                || preg_match_all('/\b_0x[0-9a-f]{4,}\b/i', $source) > 10) {
+                $errors[] = "readability: {$path}: the code looks packed, encoded or obfuscated; upload readable source.";
+            }
+        }
+        if ($total > 307200) {
+            $errors[] = 'script_size: all JavaScript files together may be at most 300 KB.';
+        }
+
+        return $errors;
+    }
+
+    /** @param list<string> $scripts @return list<string> */
+    public function templateErrors(string $source, bool $allowed, array $scripts): array
+    {
+        $errors = [];
+        preg_match_all('/<\s*script\b[^>]*>/i', $source, $tags, PREG_OFFSET_CAPTURE);
+        foreach ($tags[0] as [$tag, $offset]) {
+            $line = substr_count(substr($source, 0, $offset), "\n") + 1;
+            if (! $allowed) {
+                $errors[] = "{$line}: custom_javascript: script elements need Theme API 1.1 with the custom_javascript capability.";
+
+                continue;
+            }
+            if (preg_match('/^<script\s+src="\{\{\s*\'js\/([A-Za-z0-9_][A-Za-z0-9_.-]{0,99}\.js)\'\s*\|\s*asset_url\s*\}\}"(?:\s+(?:defer|type="module"))+\s*>$/', $tag, $match) !== 1
+                || ! in_array('assets/js/'.$match[1], $scripts, true)
+                || preg_match('/^\s*<\/script\s*>/i', substr($source, $offset + strlen($tag), 12)) !== 1) {
+                $errors[] = "{$line}: script_tag: load scripts only as <script src=\"{{ 'js/<file>.js' | asset_url }}\" defer></script> for a file in assets/js/; inline scripts are not allowed.";
+            }
+        }
+        foreach ([
+            '/<[a-z][^>]*\son[a-z]+\s*=/i' => 'event_handler: event-handler attributes such as onclick= are not allowed.',
+            '/javascript\s*:/i' => 'javascript_url: javascript: URLs are not allowed.',
+            '/<\s*(iframe|object|embed|base)\b/i' => 'embedded_content: <iframe>, <object>, <embed> and <base> elements are not allowed.',
+        ] as $pattern => $message) {
+            if (preg_match($pattern, $source, $match, PREG_OFFSET_CAPTURE) === 1) {
+                $errors[] = (substr_count(substr($source, 0, $match[0][1]), "\n") + 1).': '.$message;
+            }
+        }
+
+        return $errors;
+    }
+
+    /** The source with comments and strings blanked, so rules read only code. */
+    private function code(string $source): string
+    {
+        return (string) preg_replace_callback('~//[^\n]*|/\*.*?\*/|"(?:[^"\\\\\n]|\\\\.)*"|\'(?:[^\'\\\\\n]|\\\\.)*\'|`(?:[^`\\\\]|\\\\.)*`~s',
+            static fn (array $match): string => preg_replace('/[^\n]/', ' ', $match[0]), $source);
+    }
+};
+
 $fail = static function (string $message, int $code = 1): never {
     fwrite(STDERR, "Error: {$message}\n");
     exit($code);
@@ -66,7 +161,7 @@ $files = static function (string $directory): array {
     return $result;
 };
 
-$validate = static function (string $directory) use ($fail, $files): array {
+$validate = static function (string $directory) use ($fail, $files, $scriptRules): array {
     $manifestPath = $directory.'/theme.json';
     if (! is_file($manifestPath)) {
         $fail('theme.json was not found.');
@@ -88,9 +183,10 @@ $validate = static function (string $directory) use ($fail, $files): array {
     if (preg_match('/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/', $manifest['version']) !== 1) {
         $fail('The theme version must use semantic versioning.');
     }
-    if ($manifest['eyivo_theme_api'] !== '1.0') {
-        $fail('This CLI supports Eyivo Theme API 1.0.');
+    if (! in_array($manifest['eyivo_theme_api'], ['1.0', '1.1'], true)) {
+        $fail('This CLI supports Eyivo Theme API 1.0 and 1.1.');
     }
+    $scriptsAllowed = $manifest['eyivo_theme_api'] === '1.1' && ($manifest['capabilities']['custom_javascript'] ?? false) === true;
     if (! is_array($manifest['forms'] ?? null) || ! isset($manifest['forms']['contact'])) {
         $fail('theme.json must declare portable forms, including forms.contact.');
     }
@@ -123,6 +219,25 @@ $validate = static function (string $directory) use ($fail, $files): array {
     }
     foreach (ThemeDemoLocale::errors($demo, ['en', 'tr', 'de', 'fr', 'es', 'it', 'pt', 'nl', 'pl', 'ar', 'ru', 'ja', 'ko', 'zh']) as $error) {
         $fail($error);
+    }
+    // Mirrors the platform's demo_media_url rule: an https URL on an allowed host, or a file packaged under assets/.
+    $packaged = $files($directory);
+    foreach (is_array($demo['media'] ?? null) ? $demo['media'] : [] as $asset => $definition) {
+        $url = is_array($definition) ? ($definition['public_url'] ?? null) : null;
+        if ($url === null || $url === '') {
+            if (! str_starts_with((string) $asset, 'assets/') || ! isset($packaged[(string) $asset])) {
+                $fail("demo_media_url: demo media {$asset} needs an https URL on an allowed host or a file packaged under assets/ at that path.");
+            }
+            continue;
+        }
+        $parts = is_string($url) ? parse_url($url) : false;
+        if (! is_array($parts)
+            || strtolower((string) ($parts['scheme'] ?? '')) !== 'https'
+            || isset($parts['user']) || isset($parts['pass'])
+            || (isset($parts['port']) && (int) $parts['port'] !== 443)
+            || ! in_array(strtolower((string) ($parts['host'] ?? '')), ['cdn.eyivo.com', 'images.pexels.com'], true)) {
+            $fail("demo_media_url: demo media {$asset} must use https on cdn.eyivo.com or images.pexels.com, or be packaged under assets/.");
+        }
     }
     foreach ($demo['pages'] ?? [] as $page) {
         foreach ($page['components'] ?? [] as $component) {
@@ -168,13 +283,22 @@ $validate = static function (string $directory) use ($fail, $files): array {
     if (! is_file($directory.'/layouts/default.liquid')) {
         $fail('layouts/default.liquid is required.');
     }
+    $scripts = array_values(array_filter(array_keys($files($directory)), static fn (string $path): bool => str_ends_with(strtolower($path), '.js')));
+    foreach ($scriptRules($directory, $scripts, $scriptsAllowed, $manifest) as $error) {
+        $fail($error);
+    }
     foreach ($files($directory) as $relative => $absolute) {
         $extension = strtolower(pathinfo($relative, PATHINFO_EXTENSION));
-        if (in_array($extension, ['js', 'php', 'phtml', 'phar', 'zip', 'tar', 'gz'], true)) {
+        if (in_array($extension, ['php', 'phtml', 'phar', 'zip', 'tar', 'gz'], true) || preg_match('/\.(?:php\d?|phtml|phar|cgi)(?:\.|$)|(?:^|\/)\.htaccess$/i', $relative) === 1) {
             $fail("{$relative} is not allowed by the Theme API v1 policy.");
         }
-        if ($extension === 'liquid' && preg_match('/<\s*script\b|<\?(?:php|=)?|@php|\{!!/i', (string) file_get_contents($absolute)) === 1) {
+        if ($extension === 'liquid' && preg_match('/<\?(?:php|=)?|@php|\{!!/i', (string) file_get_contents($absolute)) === 1) {
             $fail("{$relative} contains forbidden executable markup.");
+        }
+        if ($extension === 'liquid') {
+            foreach ($scriptRules->templateErrors((string) file_get_contents($absolute), $scriptsAllowed, $scripts) as $error) {
+                $fail("{$relative}:{$error}");
+            }
         }
         if ($extension === 'liquid' && preg_match('/\bcontact\.(?:action|csrf_token|old|success)|\bform_preset\b/', (string) file_get_contents($absolute)) === 1) {
             $fail("{$relative} uses the retired contact form contract; use forms bindings and schema fields.");

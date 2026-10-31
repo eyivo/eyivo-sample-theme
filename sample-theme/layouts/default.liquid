@@ -70,5 +70,6 @@
 
     {% if company.phone or theme.settings.whatsapp_url %}<aside class="contact-dock" aria-label="{{ 'Quick contact' | t }}">{% if company.phone %}<a href="tel:{{ company.phone }}"><span>{{ 'Call' | t }}</span><strong>{{ company.phone }}</strong></a>{% endif %}{% if theme.settings.whatsapp_url %}<a href="{{ theme.settings.whatsapp_url | localized_url }}" rel="noopener"><span>WhatsApp</span><strong>{{ 'Message us' | t }}</strong></a>{% endif %}</aside>{% endif %}
     {% if theme.settings.show_back_to_top %}<a class="back-to-top is-visible" href="#page-top" aria-label="{{ 'Back to top' | t }}">↑</a>{% endif %}
+    <script src="{{ 'js/theme.js' | asset_url }}" defer></script>
 </body>
 </html>

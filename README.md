@@ -27,7 +27,8 @@ Step-by-step guide: [Custom themes](https://eyivo.com/docs/custom-themes). Every
 - Form bindings for all seven Eyivo form plugins (`contact`, `quote_request`, `product_inquiry`, `appointment`, `course_application`, `reservation`, `property_inquiry`). The Contact page shows the contact form, the home page the quote form, and a Form examples page linked from the footer the other five. Human verification is added to every form automatically, and the Ads plugin needs no theme code, so neither is declared in `theme.json`.
 - Main navigation shows five links and moves the rest into a More menu built with `<details>`, so it works without JavaScript
 - Hero backgrounds on every page except policy pages: page hero images, and on listings the first gallery photo, product cover, video poster or post cover
-- Responsive CSS and package-local image/font assets (custom JavaScript is disabled in Theme API v1)
+- Responsive CSS and package-local image/font assets
+- A reviewed `assets/js/theme.js` (Theme API 1.1) that closes open menus on an outside click or Escape, marks the scrolled header and adds catalog search; the theme works the same without it
 - Demo metadata in `demo.json`
 - Desktop and mobile screenshots from a real seeded Eyivo site
 
@@ -64,9 +65,11 @@ eyivo-sample-theme/               repository
 │   └── eyivo-theme               optional helper: validate, pack, init
 └── sample-theme/                 the theme: edit, zip and upload this folder
     ├── assets/
-    │   └── css/
-    │       ├── base.css
-    │       └── theme.css
+    │   ├── css/
+    │   │   ├── base.css
+    │   │   └── theme.css
+    │   └── js/
+    │       └── theme.js          Theme API 1.1, reviewed
     ├── components/
     │   └── capability_note.liquid
     ├── layouts/
@@ -90,7 +93,7 @@ eyivo-sample-theme/               repository
     └── theme.json
 ```
 
-The theme uses the full built-in `eyivo:*` component library and includes `theme:capability_note` as an example of a theme-owned component. Its schema, defaults, translations, and variants are declared under `components` in `theme.json`. Theme API v1 intentionally disables custom JavaScript and external assets; interactive platform features remain platform-owned.
+The theme uses the full built-in `eyivo:*` component library and includes `theme:capability_note` as an example of a theme-owned component. Its schema, defaults, translations, and variants are declared under `components` in `theme.json`. External assets stay disabled; theme JavaScript is allowed only through Theme API 1.1 and the automatic review (see Theme scripts below), and interactive platform features remain platform-owned.
 
 ### Event listings
 
@@ -125,7 +128,7 @@ Internal URLs from theme settings should use `localized_url`:
 
 Themes control form placement, layout and styling. Approved system plugins define accepted fields, validation and workflow; Eyivo stores submissions independently of the active theme.
 
-This sample targets Theme API `1.0`, Forms API `1` and the system form-plugin release. The Contact plugin is declared in `theme.json`, together with portable aliases:
+This sample targets Theme API `1.1`, Forms API `1` and the system form-plugin release. The Contact plugin is declared in `theme.json`, together with portable aliases:
 
 ```json
 {
@@ -227,12 +230,62 @@ The included `demo.json` uses Theme API schema version `2`:
 | `menus` | Ordered additional-menu drafts using source slugs and optional locale-keyed slugs. |
 | `videos` | External `source_url` or a packaged-media reference. |
 
-Use relative URLs such as `/contact` for links inside the demo site. A media
-reference must have a public `public_url`; Eyivo downloads and stores it through
-the central application during demo import. Never include tenant IDs, R2/S3
-credentials, or direct storage-write instructions.
+Use relative URLs such as `/contact` for links inside the demo site. Each media
+entry needs either a `public_url` on `https` at an allowed host
+(`cdn.eyivo.com` or `images.pexels.com`), or a file packaged in the theme under
+`assets/`, keyed by its path and given without `public_url`. Other hosts,
+`http`, IP addresses and redirects are rejected with the `demo_media_url`
+diagnostic, both on upload and by `bin/eyivo-theme validate`. `mime_type`,
+`width` and `height` are only hints: Eyivo detects the real type from the file,
+which must be an allowed image or video of at most 20 MB. Eyivo downloads and
+stores it through the central application during demo import. Never include
+tenant IDs, R2/S3 credentials, or direct storage-write instructions.
 
 See the complete working structure in this repository's [`demo.json`](demo.json).
+
+## Custom CSS and section classes
+
+Website owners can add their own CSS (Design → Custom CSS) and give sections
+class names. Eyivo adds the owner's stylesheet as
+`<style id="eyivo-custom-css">` just before `</head>`, after this theme's CSS,
+and adds a section's class names to the first element of each component's
+output. Keep one root element per component template, and keep the stable hooks
+`body.theme-{key}`, `layout-{name}` and one root class per component so owners'
+CSS keeps working across versions. `components/capability_note.liquid` also
+prints the names itself with `{{ component.css_class }}`. See the Theme API
+section "Site custom CSS and section classes":
+https://eyivo.com/developers/theme-api#custom-css
+
+## Theme scripts
+
+This sample declares Theme API 1.1 with scripts:
+
+```json
+"eyivo_theme_api": "1.1",
+"capabilities": { "custom_javascript": true, "external_assets": false }
+```
+
+- Put each file directly in `assets/js/` (at most 20 files, 100 KB each,
+  300 KB in total) and load it only as
+  `<script src="{{ 'js/theme.js' | asset_url }}" defer></script>` (or
+  `type="module"`).
+- No `import`/`export`: each file is reviewed on its own. Share code through one
+  global; this theme uses `window.EyivoSampleTheme`.
+- Templates may not contain inline scripts, external script sources, `on…=`
+  attributes, `javascript:` URLs, or `iframe`/`object`/`embed`/`base` elements.
+- Upload readable source, never minified or obfuscated code.
+- After upload a version is **Pending review**, then **Approved** or
+  **Rejected** (with each finding's file and line). Only Approved versions can be
+  previewed or used, and an Approved version can later be **Blocked**.
+- Approved scripts run only on websites owned by the account that uploaded the
+  theme. Keep the theme working without them.
+- Scripts must never replace, wrap or hide forms, human verification, the
+  consent banner, the Eyivo badge or the owner bar.
+
+`php bin/eyivo-theme validate` checks the same package rules as the platform
+(declaration, files, sizes, tags, imports and minified code). The platform's AI
+security review runs only after upload. Full rules:
+https://eyivo.com/developers/theme-api#theme-scripts
 
 ## Security
 

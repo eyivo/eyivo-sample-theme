@@ -43,6 +43,7 @@ The included `theme:capability_note` additionally demonstrates:
 - Right-to-left layout safeguards
 - Responsive desktop and mobile navigation
 - Native expandable quick navigation, also available on mobile without custom JavaScript
+- Reviewed theme script (Theme API 1.1): menus close on an outside click or Escape, the header gains a scrolled state, and products get a search field that appears only when the script runs
 - Optional light/dark colors following the visitor's system preference
 - Announcement bar, floating contact actions, and a native back-to-top link
 - Portable form bindings to persistent site form instances, independent of theme changes

@@ -1,4 +1,4 @@
-<section class="component capability-note capability-note-{{ component.variant | default: 'default' }}">
+<section class="component capability-note capability-note-{{ component.variant | default: 'default' }} {{ component.css_class }}">
     <div class="shell capability-note-grid">
         <p class="eyebrow"><span aria-hidden="true">✦</span>{{ component.data.label | t }}</p>
         <div><h2>{{ component.data.heading | t }}</h2><div class="prose capability-note-body">{{ component.data.text }}</div></div>
