@@ -1,3 +1,8 @@
 .DS_Store
 Thumbs.db
+# Theme zips built by tools/run-eyivo-theme.mjs pack.
 *.zip
+# Preview dependencies installed with npm install in tools/.
+tools/node_modules/
+# Static demo pages rendered by tools/run-render-demo.mjs.
+preview/

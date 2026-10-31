@@ -1,0 +1,8 @@
+---
+description: Repository instructions, including the required theme identity questions
+alwaysApply: true
+---
+
+Follow the repository instructions in @AGENTS.md before doing anything else.
+
+The most important rule: before changing the theme, ask the user for `key`, `name` and `version` in `sample-theme/theme.json`. Never choose them yourself, and ask about `version` before every pack or upload.

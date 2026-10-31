@@ -4,7 +4,7 @@ A complete, self-contained example theme for Eyivo Theme API `1.0`. Use it as a 
 
 ## Start here
 
-The theme is the **`sample-theme/`** folder. Everything else in this repository is documentation and an optional helper tool.
+The theme is the **`sample-theme/`** folder. Everything else in this repository is documentation, agent instructions and optional helper tools in `tools/` (see [tools/README.md](tools/README.md)).
 
 1. Download this repository, or use **Download sample theme** under Custom themes in the Eyivo panel.
 2. Edit only the files in `sample-theme/`. Raise `version` in `sample-theme/theme.json` every time you upload the same theme again.
@@ -42,27 +42,15 @@ in `theme.json` under `preview`, with `data_source` set to `demo_data`, its
 `screenshots/` path, page, and viewport. The app panel rejects packages without
 this declaration or its screenshot.
 
-## Screenshots
-
-| Desktop | Mobile |
-| --- | --- |
-| [![Home desktop](sample-theme/screenshots/home-desktop.png)](sample-theme/screenshots/home-desktop.png) | [![Home mobile](sample-theme/screenshots/home-mobile.png)](sample-theme/screenshots/home-mobile.png) |
-| [![Catalog desktop](sample-theme/screenshots/catalog-desktop.png)](sample-theme/screenshots/catalog-desktop.png) | [![Catalog mobile](sample-theme/screenshots/catalog-mobile.png)](sample-theme/screenshots/catalog-mobile.png) |
-| [![Gallery desktop](sample-theme/screenshots/gallery-desktop.png)](sample-theme/screenshots/gallery-desktop.png) | [![Gallery mobile](sample-theme/screenshots/gallery-mobile.png)](sample-theme/screenshots/gallery-mobile.png) |
-| [![Contact desktop](sample-theme/screenshots/contact-desktop.png)](sample-theme/screenshots/contact-desktop.png) | [![Contact mobile](sample-theme/screenshots/contact-mobile.png)](sample-theme/screenshots/contact-mobile.png) |
-
-Additional views: [About](sample-theme/screenshots/about-desktop.png), [catalog detail](sample-theme/screenshots/catalog-detail-desktop.png), [videos](sample-theme/screenshots/videos-desktop.png), [page body](sample-theme/screenshots/page-body-desktop.png), [Footer desktop](sample-theme/screenshots/footer-desktop.png), [Footer mobile](sample-theme/screenshots/footer-mobile.png), and [mobile navigation](sample-theme/screenshots/navigation-mobile.png).
-
 ## Directory structure
 
 ```text
 eyivo-sample-theme/               repository
 ├── README.md
 ├── FEATURES.md
-├── FOUNDATION-COMPOSITION.md
+├── AGENTS.md                     instructions for AI coding assistants
 ├── LICENSE
-├── bin/
-│   └── eyivo-theme               optional helper: validate, pack, init
+├── tools/                        optional helpers: validate, pack, init, preview, screenshots
 └── sample-theme/                 the theme: edit, zip and upload this folder
     ├── assets/
     │   ├── css/
@@ -185,15 +173,15 @@ Plugin packages and PHP handlers remain separate from theme archives. Public sub
 
 Zip the `sample-theme` folder and upload the zip. A zip of the folder itself and a zip of its contents are both accepted, because Eyivo ignores one wrapping folder.
 
-The optional helper checks the theme before you upload and can build the zip for you. It needs PHP 8.1 or later on your computer:
+The optional helpers in `tools/` check the theme before you upload and can build the zip for you. They need Node.js 22 or later on your computer:
 
 ```bash
-php bin/eyivo-theme validate sample-theme
-php bin/eyivo-theme pack sample-theme ../eyivo-sample-theme.zip
-php bin/eyivo-theme init ../my-eyivo-theme
+node tools/run-eyivo-theme.mjs validate
+node tools/run-eyivo-theme.mjs pack
+node tools/run-eyivo-theme.mjs init ../my-eyivo-theme
 ```
 
-`init` copies `sample-theme/` to a new folder as a starting point for your own theme.
+`pack` writes `<key>-<version>.zip` next to the theme folder. `init` copies `sample-theme/` to a new folder as a starting point for your own theme. [tools/README.md](tools/README.md) also describes the local preview and screenshot scripts.
 
 Upload the zip from:
 
@@ -235,7 +223,7 @@ entry needs either a `public_url` on `https` at an allowed host
 (`cdn.eyivo.com` or `images.pexels.com`), or a file packaged in the theme under
 `assets/`, keyed by its path and given without `public_url`. Other hosts,
 `http`, IP addresses and redirects are rejected with the `demo_media_url`
-diagnostic, both on upload and by `bin/eyivo-theme validate`. `mime_type`,
+diagnostic, both on upload and by `node tools/run-eyivo-theme.mjs validate`. `mime_type`,
 `width` and `height` are only hints: Eyivo detects the real type from the file,
 which must be an allowed image or video of at most 20 MB. Eyivo downloads and
 stores it through the central application during demo import. Never include
@@ -282,7 +270,7 @@ This sample declares Theme API 1.1 with scripts:
 - Scripts must never replace, wrap or hide forms, human verification, the
   consent banner, the Eyivo badge or the owner bar.
 
-`php bin/eyivo-theme validate` checks the same package rules as the platform
+`node tools/run-eyivo-theme.mjs validate` checks the same package rules as the platform
 (declaration, files, sizes, tags, imports and minified code). The platform's AI
 security review runs only after upload. Full rules:
 https://eyivo.com/developers/theme-api#theme-scripts
@@ -408,7 +396,18 @@ source slugs, with optional `slugs` and `labels` maps; English label overrides p
 the fallback. External URLs are unchanged. The sample Footer and Useful links menus
 include explicit English/Turkish slug maps to demonstrate portable references.
 
-`php bin/eyivo-theme validate` checks the English baseline, supported locale keys,
+`node tools/run-eyivo-theme.mjs validate` checks the English baseline, supported locale keys,
 translation object shapes, and `default_locale`. Older unkeyed English content is
 still accepted. A demo export retains all available translations, including gallery
 image descriptions, and rejects content without an English title and slug.
+
+## Screenshots
+
+| Desktop | Mobile |
+| --- | --- |
+| [![Home desktop](sample-theme/screenshots/home-desktop.png)](sample-theme/screenshots/home-desktop.png) | [![Home mobile](sample-theme/screenshots/home-mobile.png)](sample-theme/screenshots/home-mobile.png) |
+| [![Catalog desktop](sample-theme/screenshots/catalog-desktop.png)](sample-theme/screenshots/catalog-desktop.png) | [![Catalog mobile](sample-theme/screenshots/catalog-mobile.png)](sample-theme/screenshots/catalog-mobile.png) |
+| [![Gallery desktop](sample-theme/screenshots/gallery-desktop.png)](sample-theme/screenshots/gallery-desktop.png) | [![Gallery mobile](sample-theme/screenshots/gallery-mobile.png)](sample-theme/screenshots/gallery-mobile.png) |
+| [![Contact desktop](sample-theme/screenshots/contact-desktop.png)](sample-theme/screenshots/contact-desktop.png) | [![Contact mobile](sample-theme/screenshots/contact-mobile.png)](sample-theme/screenshots/contact-mobile.png) |
+
+Additional views: [About](sample-theme/screenshots/about-desktop.png), [catalog detail](sample-theme/screenshots/catalog-detail-desktop.png), [videos](sample-theme/screenshots/videos-desktop.png), [page body](sample-theme/screenshots/page-body-desktop.png), [Footer desktop](sample-theme/screenshots/footer-desktop.png), [Footer mobile](sample-theme/screenshots/footer-mobile.png), and [mobile navigation](sample-theme/screenshots/navigation-mobile.png).

@@ -1,0 +1,19 @@
+{
+  "name": "eyivo-theme-tools",
+  "private": true,
+  "type": "module",
+  "description": "Helpers for the Eyivo theme in ../sample-theme: validate, pack and scaffold themes, render a local preview, take screenshots.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "node run-eyivo-theme.mjs validate",
+    "pack": "node run-eyivo-theme.mjs pack",
+    "preview": "node run-render-demo.mjs",
+    "screenshots": "node run-screenshots.mjs"
+  },
+  "dependencies": {
+    "liquidjs": "10.21.1",
+    "playwright-core": "1.49.1"
+  }
+}

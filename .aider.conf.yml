@@ -1,0 +1,3 @@
+# Aider loads these files as read-only context in every session.
+read:
+  - AGENTS.md
